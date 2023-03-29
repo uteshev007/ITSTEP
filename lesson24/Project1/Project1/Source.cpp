@@ -40,9 +40,50 @@ void GetMap(Map &map, string mapFileName)
 
 }
 
+Coord FindPlayer(Map &map)
+{
+	Coord playerPosition{ 0,0 };
+	for (int  i = 0; i < map.h; i++)
+	{
+		int playerX = map.map[i].find('P');
+		if (playerX != -1)
+		{
+			playerPosition.x = playerX;
+			playerPosition.y = i;
+			return playerPosition;
+		}
+	}
+	return playerPosition;
+}
+bool CheckNextPosition(Coord nextPosition, Map map)
+{
+	return(map.map[nextPosition.y][nextPosition.x] == '#');
+}
+
+void HandleTranslation(Coord nextPosition, Map &map)
+{
+	switch (map.map[nextPosition.y][nextPosition.x])
+	{
+	case 'K':
+		swap(map.map[map.player.Position.y][map.player.Position.x], map.map[nextPosition.y][nextPosition.x]);
+		map.map[map.player.Position.y][map.player.Position.x] = ' ';
+		map.player.Position = nextPosition;
+	default:
+		swap(map.map[map.player.Position.y][map.player.Position.x], map.map[nextPosition.y][nextPosition.x]);
+		map.player.Position = nextPosition;
+		map.player.currentNumberOfKeys++;
+		break;
+	}
+		map.DrawMap();
+	
+}
+
 void StartGame(string mapFileName)
 {
+	bool isActive = true;
 	Map map;
+	map.maxNumberOfKeys = 1;
+	map.player.currentNumberOfKeys = 0;
 	CLS;
 	GetMap(map, mapFileName);
 	//CheckMap();
@@ -50,8 +91,65 @@ void StartGame(string mapFileName)
 	// Проверить что все закрыто стенами, проверить что ключей как минимум больше 0
 	//Если что-то не так из этого списка -> выводите сообщение об ошибке (что конкрентно)
 	//и используете функцию exit(1) для завершения работы приложения
+
+	CursorHide(FALSE, 100);
 	map.DrawMap();
+	map.player.Position = FindPlayer(map);
+	while (isActive)
+	{
+		if (_kbhit())
+		{	
+			int key = _getch();
+			switch (key)
+			{
+			case _KEY::ESC:
+				isActive = false;
+				break;
+			case _KEY::RIGHT:
+			case 'd':
+			case 'D':
+			case 'в':
+			case 'В':
+				if (CheckNextPosition(Coord{ map.player.Position.x+1 , map.player.Position.y }, map))
+					break;
+				HandleTranslation(Coord{ map.player.Position.x+1 , map.player.Position.y }, map);
+					break;
+				break;
+			case _KEY::LEFT:
+			case 'a':
+			case 'A':
+			case 'ф':
+			case 'Ф':
+				if (CheckNextPosition(Coord{ map.player.Position.x - 1 , map.player.Position.y }, map))
+					break;
+				HandleTranslation(Coord{ map.player.Position.x - 1 , map.player.Position.y }, map);
+				break;
+			case _KEY::UP:
+			case 'w':
+			case 'W':
+			case 'ц':
+			case 'Ц':
+				if (CheckNextPosition(Coord{ map.player.Position.x , map.player.Position.y - 1 }, map))
+					break;
+				HandleTranslation(Coord{ map.player.Position.x , map.player.Position.y - 1}, map);
+				break;
+			case _KEY::DOWN:
+			case 's':
+			case 'S':
+			case 'ы':
+			case 'Ы':
+				if (CheckNextPosition(Coord{ map.player.Position.x , map.player.Position.y + 1 }, map))
+					break;
+				HandleTranslation(Coord{ map.player.Position.x , map.player.Position.y + 1 }, map);
+				break;
+			default:
+				break;
+			}
+		}
+	}
 }
+
+
 bool IsFileExist(string mapFileName)
 {
 	ifstream File;
