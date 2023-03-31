@@ -1,0 +1,3 @@
+﻿  Snake.cpp
+D:\ITSTEP\С++\HW\exam game\Snake\Snake.cpp(22): warning C4715: Print: значение возвращается не при всех путях выполнения
+  Snake.vcxproj -> D:\ITSTEP\С++\HW\exam game\Snake\x64\Debug\Snake.exe
