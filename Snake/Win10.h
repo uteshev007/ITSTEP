@@ -13,6 +13,7 @@ using namespace std;
 #include <io.h>     // низкоуровневый ввод-вывод
 #include <time.h>
 #include <ctime>
+#include "Game.h"
 
 
 // печисление константных имен
