@@ -1,0 +1,54 @@
+#include <iostream>
+#include <iomanip>
+#include <time.h>
+using namespace std;
+
+// указатели
+
+int main()
+{
+  system("chcp 1251 > nul");
+  srand(time(0));
+
+  int a, b, c;  // простые переменные типа int
+  // обяъвление перменных-указателей
+  int *pa, *pb, *pc; // переменные указатели на тип int
+  //int *pt, t; // pt-указатель, t-простая переменная
+  cout << "Enter a,b: ";
+  cin >> a >> b;
+  c = a + b;
+  cout << "a+b = " << c << endl;
+
+  // с помощью указателей
+  cout << "Enter a,b (pa,pb): ";
+  pa = &a; // переменная pa принимает адрес переменной a
+  cin >> *pa; // *pa - разыменновывание указателя,
+              // разадресация указателя,
+              // получить доступ к переменной по
+              //  адресу в pa - переменная a
+              // cin >> *pa; - аналогично cin >> a
+  pb = &b; // в pb адрес b
+  cin >> *pb; // cin >> b;
+  // cin >> *pa >> *pb; === cin >> a >> b;
+  pc = &c;
+  *pc = *pa + *pb; // c = a + b;
+
+  cout << *pa << " + " << *pb << " = " << *pc << endl;
+  cout <<   a << " + " <<   b << " = " <<   c << endl;
+
+  //cout <<  pa << " + " <<  pb << " = " <<  pc << endl;
+  cout << "pa = " << pa << endl; // адрес из указателя pa
+  cout << "&a = " << &a << endl; // адрес переменной a
+  //pa = &c; - изменить адрес внутри указателя pa
+  cout << "pb = " << pb << endl; // адрес из указателя pb
+  cout << "&b = " << &b << endl; // адрес переменной b
+  cout << "pc = " << pc << endl; // адрес из указателя pc
+  cout << "&c = " << &c << endl; // адрес переменной c
+  cout << endl;
+  cout << "&pa = " << &pa << endl;
+  cout << "&pb = " << &pb << endl;
+  cout << "&pc = " << &pc << endl;
+  *((int*)(123)) = 10;
+
+  cin.get(); cin.get();
+}

@@ -1,0 +1,112 @@
+#include <iostream>
+#include <iomanip>
+#include <time.h>
+using namespace std;
+/*
+a) *Написать, программу, которая вычисляет прибыль фирмы
+за 5 лет. Пользователь вводит прибыль фирмы за каждый месяц.
+Посчитать общую прибыль и прибыль за каждый год.
+b) **вывести график - сравнительная характеристика прибыли
+за каждый год:
+1год: ++++++++++++++
+2год: ++++++++++++++++
+3год: ++++
+4год: +++++++++++++++
+5год: +++++++
+c) ***вывести вертикальный график
+*/
+#define ROW 5
+#define COL 12
+int SumMas2D(int mas[ROW][COL], int row, int col);
+//прототип функции int SumMas2D
+void GrafMas2D(int mas[ROW][COL], int row, int col, int height);
+//прототип функции int GrafMas2D
+
+void InitMas2D(int mas[ROW][COL], int row, int col,
+  int min, int max)
+{
+  for (int i = 0; i < row; i++)
+  {
+    for (int j = 0; j < col; j++)
+    {
+      mas[i][j] = rand() % (max - min + 1) + min;
+    }
+  }
+}
+
+void PrintMas2D(int mas[ROW][COL], int row, int col)
+{
+  for (int i = 0; i < row; i++)
+  {
+    cout << "За " << i + 1 << " год: ";
+    for (int j = 0; j < col; j++)
+    {
+      cout << setw(3) << mas[i][j] << " ";
+    }
+    cout << setw(3) << "|" << SumMas2D(mas, i, col) << " " << endl;
+  }
+}
+
+int SumMas2D(int mas[ROW][COL], int row, int col)
+{
+  int sum = 0;
+  //for (int i = 0; i < row; i++)
+  {
+    for (int j = 0; j < col; j++)
+    {
+      sum += mas[row][j];
+    }
+  }
+  return sum;
+}
+
+
+int main()
+{
+  setlocale(LC_ALL, "Rus");
+  srand(time(0));
+  int mas[ROW][COL];
+  InitMas2D(mas, ROW, COL, -2, 10);
+  PrintMas2D(mas, ROW, COL);
+  cout << endl;
+  cout << "Укажите высоту графика: ";
+  int a;
+  cin >> a;
+  GrafMas2D(mas, ROW, COL, a);
+  //PrintMas2D(mas, 3, 6);
+  //cout<<SumMas2D(mas, ROW-1, COL);
+
+
+  cin.get(); cin.get();
+}
+
+void GrafMas2D(int mas[ROW][COL], int row, int col, int height)
+{
+  int sum[ROW];
+  int max = SumMas2D(mas, 0, col);
+  for (int i = 0; i < row; i++)
+  {
+    sum[i] = SumMas2D(mas, i, col);
+    if (sum[i] > max)
+    {
+      max = sum[i];
+    }
+  }
+  double numX = (double)max / height;
+  double maxX = max - numX;
+  for (int i = 0; i < height; i++)
+  {
+    for (int j = 0; j < row; j++)
+    {
+      if (sum[j] >= maxX) { cout << " + "; }
+      else { cout << "   "; }
+    }
+    cout << endl;
+    maxX -= numX;
+  }
+  for (int i = 0; i < row; i++)
+  {
+    cout << setw(2) << i + 1 << " ";
+  }
+  cout << endl;
+}

@@ -1,0 +1,9 @@
+#include <stdio.h>
+#include <locale.h>
+void main()
+{
+	setlocale(LC_ALL, "RUSSIAN");
+	puts("¬ведите ваше им€");//аналог cout<<"¬ведите ваше им€";
+
+	getchar(); getchar();//аналог cin.get();
+}

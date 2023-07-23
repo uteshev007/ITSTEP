@@ -1,0 +1,126 @@
+#include <iostream>
+using namespace std;
+
+
+// strstr через указатели()
+
+//1) Объвить две переменные и два указателя.Присвоить указателям адреса переменных.
+//Сложить переменные, используя указатели и присвоить результат третьей переменной.
+//Вывести результат сложения на экран и адрес результата.
+
+//2) Объявить две переменные и два указателя.Присвоить указателям адреса переменных.
+//Сравнить два указателя.Объяснить результат сравнения.
+
+// 
+//3) Используя указатели и оператор разыменования, 
+//определить наибольшее из двух чисел.
+
+// swap(ptr)
+
+void myswap(int* a, int* b)
+{
+	int temp = *a;
+	*a = *b;
+	*b = temp;
+}
+
+int mymax(int* a, int* b)
+{
+	if (*a < *b)
+		return *b;
+	else
+		return *a;
+}
+
+//7) Используя указатели заполнить массив случайными числами и вывести его на экран.
+
+int myStrlen(const char* str)
+{
+	int result = 0;
+	while (*str)
+	{
+		result++;
+		str++;
+	}
+	return result;
+}
+
+// копирует строку из src в dest (Сделать через указатели)
+void mystrcpy(char *dest, const char *src)
+{
+	if (dest == NULL || src == NULL)
+		return;
+	while (*src)
+	{
+		*dest = *src;
+		dest++;
+		src++;
+	}
+	*dest = '\0';
+}
+
+int findMin(int* arr, int size, int& nR)
+{
+	int min = INT_MAX;
+	while (size > -1)
+	{
+		if (*arr < min)
+		{
+			min = *arr;
+			nR = size + 1;
+		}
+		arr++;
+	}
+
+	//for (int i = 0; i < size; i++)
+	//{
+	//	if (*(arr + i) < min)
+	//	{
+	//		min = *(arr + i);
+	//		nR = i + 1;
+	//	}
+	//}
+	return min;
+}
+
+//8) Написать функцию, которая принимает указатель на массив и
+//количество элементов и возвращает минимальный элемент массива(значение и номер элемента).
+int main()
+{
+	int str[5] = { 3, 2, 1, 4, 5 };
+
+
+	//mystrcpy(str, "Hello");
+
+	//cout << str[1] << ' ' << *(str + 1);
+
+	//cout << myStrlen(str) << endl << str;
+
+	/*int a, b;
+	a = 5; b = 10;
+	int* aPtr, * bPtr;
+	aPtr = &a; bPtr = &b;*/
+	//cout << sizeof(*aPtr);
+	/*int c = *aPtr + *bPtr; // 1
+	cout << "&c = " << &c << endl << "c = " << c;*/
+	//if (&aPtr == &bPtr) // 2
+	//	cout << "equal";
+	//else
+	//{
+	//	cout << "not equal";
+	//}
+	//int a = 14;
+	//int* aPtr; // объявляем указатель//pointer
+
+	//cout << "a = " << a << endl; // достаем данные
+	//cout << "&a = " << &a << endl; // получаем их адрес
+
+	//aPtr = &a; // заполняем указатель каким-то адресом
+	//cout << "&aPtr = " << &aPtr << endl;
+	//cout << "aPtr = " << aPtr << endl;
+
+	//*aPtr = 22; // Разименовывание
+	//cout << "a = " << a << endl; // опять достаем данные
+	//cout << "*aPtr = " << *aPtr << endl; // Печатаем данные по указателю
+
+}

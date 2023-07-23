@@ -1,0 +1,17 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+
+void main()
+{
+	setlocale(LC_ALL, "RUSSIAN");
+	char name[100], name2[100];
+	cout << "Введите строку: ";
+	cin.getline(name, 100);
+	cout << "Введите строку: ";
+	cin.getline(name2, 100);
+	// Считает сколько символов 2й строки НЕ встречается подряд в первой
+	cout<< strcspn(name, name2);
+
+	cin.get(); cin.get();
+}

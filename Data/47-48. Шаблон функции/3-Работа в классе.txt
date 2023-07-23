@@ -1,0 +1,19 @@
+#include <iostream>
+#include <iomanip>
+#include <time.h>
+using namespace std;
+#define SIZE 10
+/*
+Шаблон функции
+33. *Напишите шаблон функции, которая вычисляет
+корень линейного уравнения.
+*/
+
+int main()
+{
+  setlocale(LC_ALL, "Rus");
+  srand(time(0));
+
+
+  cin.get(); cin.get();
+}

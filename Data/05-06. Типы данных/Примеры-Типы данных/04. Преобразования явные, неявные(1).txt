@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	setlocale(LC_ALL, "RUSSIAN");
+
+	/* Преобразования */
+	//cout << 1 / 0 << endl;	// error C2124: divide or mod by zero
+	//cout << 1.0 / 0 << endl;	// error C2124: divide or mod by zero
+
+	/* Ошибка во время выполнения: Unhandled exception at 0x011F101E in XXX.exe: 0xC0000094: Integer division by zero */
+	//int x = 1, y = 0;
+	//cout << x / y << endl;	// warning C4723: potential divide by 0
+
+	int x = 1, y = 0;
+	cout << x / (float)y << endl;	// warning C4723: potential divide by 0
+
+	// Неявные преобразования выполняет компилятор
+	int s = '#';
+	cout << "s=" << s << endl;
+
+	double d = 3.14;
+	//float f = d;			// warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+	
+
+	// Явные преобразования выполняет программист
+	float fl = (float)d;
+
+
+	cin.get();
+}

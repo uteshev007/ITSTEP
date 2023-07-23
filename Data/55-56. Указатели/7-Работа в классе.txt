@@ -1,0 +1,101 @@
+#include <iostream>
+#include <iomanip>
+#include <time.h>
+using namespace std;
+// указатели
+/*
+39. *Написать программу, которая вычисляет сумму
+элементов массива, используя ДВА указателя на массив
+целых чисел. Первый указатель двигается с начала
+массива, второй - с конца.
+*/
+void Swap(int* mas, int size) {
+  int* p1, * p2;
+  p1 = &mas[0];     //p1 = mas;
+  p2 = &mas[size - 1];  //p2 = mas + size - 1;
+  while (p1 < p2) {
+    swap(*p1++, *p2--);
+    /*swap(*p1, *p2);
+    p1++;
+    p2--;
+     */
+  }
+}
+
+void SecuMas(int* mas, int size, int n)
+{
+  int* p1, * p2;
+  p1 = &mas[0];
+  p2 = &mas[size - 1];
+  while (p1 < p2)
+  {
+
+    if (*p1 == n) {
+      cout << "Число найдено.";
+      cout << "Позиция: " << p1 - mas << endl;
+    }
+    if (*p2 == n)
+    {
+      cout << "Число найдено.";
+      cout << "Позиция: " << p2 - mas << endl;
+    }
+    p1++; p2--;
+
+  }
+  if (size % 2 != 0)
+  {
+    if (*p1 == n) {
+      cout << "Число найдено.";
+      cout << "Позиция: " << p1 - mas << endl;
+    }
+  }
+}
+
+int SummMas(int* mas, int size)
+{
+  int* p1, * p2;
+  p1 = mas;           //p1 = &mas[0];
+  p2 = mas + size - 1;//p2 = &mas[size-1];
+  int summ = 0;
+  while (p1 < p2)
+  {
+    summ += *p1++;
+    summ += *p2--;
+  }
+  if (size % 2 != 0)
+  {
+    summ += *p1;
+  }
+  return summ;
+}
+
+int main()
+{
+  system("chcp 1251 > nul");
+  srand(time(0));
+  int size;
+  cout << "Введите размер массива:";
+  cin >> size;
+  int* pm = new int[size];
+  for (int i = 0; i < size; i++) {
+    pm[i] = rand() % 9 + 1;
+    cout << *(pm + i) << " ";
+  }
+  //Swap(pm, size);
+
+ // int num;
+  //cout << "Введите искомое число: ";
+  //cin >> num;
+  //SecuMas(pm, size, num);
+  cout << endl;
+  cout << SummMas(pm, size) << endl;
+  cout << endl;
+
+  for (int i = 0; i < size; i++) {
+    cout << *(pm + i) << " ";
+  }
+  cout << endl;
+
+
+  cin.get(); cin.get();
+}

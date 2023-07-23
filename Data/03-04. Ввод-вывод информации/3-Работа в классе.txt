@@ -1,0 +1,11 @@
+#include <iostream>  // Inptu-Output Stream
+using namespace std; // std - Standart library C++
+
+int main()
+{
+  // "\a" - символ beep
+  // "\b" - backspace, забой
+  cout << "Hello World\a\b\b";
+  cout << "ABC";
+  cin.get(); cin.get();
+}

@@ -1,0 +1,66 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <iostream>
+#include <iomanip>
+#include <time.h>
+#define SIZE 1000
+using namespace std;
+
+/*
+Ќаписать ф-ции:
+1) ¬ычислени€ длины строки;
+2) функцию копировани€ строк - копирование одной строки в другую;
+3) функцию конкатенации (сцеплени€) двух строк;
+
+5. *ѕользователь вводит строку символов и искомый символ,
+посчитать сколько раз он встречаетс€ в строке.
+
+6. ѕодсчитать количество слов во введенном предложении.
+a) * между словами находитс€ только 1 пробел
+b) **пробелы также могут располагатьс€ вначале и в конце предложени€.
+c) ***пробелы могут располагатьс€ вначале и в конце предложени€,
+и между словами может быть более 1 пробела.
+
+7.**ѕользователь вводит строку и слово. ќсуществить
+в этой строке поиск заданного слова.
+*/
+
+int StrLen(char str[]) {
+  int a = 0;
+  for (int i = 0; str[i] != '\0'; i++) {
+    a++;
+  }
+  return a;
+}
+void StrCopy(char Dest[], char Src[]) {
+  int i;
+  for (i = 0; Src[i] != '\0'; i++) {
+    Dest[i] = Src[i];
+  }
+  Dest[i] = '\0';
+}
+
+int main()
+{
+  system("chcp 1251 > nul");
+  srand(time(0));
+  char str[SIZE];
+  cout << "¬ведите предложение: ";
+  cin.getline(str, SIZE);
+  cout << str << endl;
+  int size = strlen(str);
+  cout << "size = " << size << endl;
+  cout << "size = " << StrLen(str) << endl;
+
+  // 2 задача 
+  char buffer[SIZE];
+  strcpy(buffer, str);    //buffer = str
+  cout << buffer << endl;
+  strcpy_s(buffer, SIZE, str);
+  cout << buffer << endl;
+
+  char buff[SIZE];
+  cout << "Coping: ";
+  StrCopy(buff, str);
+  cout << buff << endl;
+  cin.get(); cin.get();
+}

@@ -1,0 +1,39 @@
+#include <iostream>
+#include <Windows.h>
+#include <time.h>
+using namespace std;
+
+void SetColor(WORD wAttributes) {// функция для смена цвета
+	HANDLE hOUTPUT = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(hOUTPUT, wAttributes);
+}
+
+// Функция для выбора позиции
+void SetPos(int x, int y) {// функция для установки позиции каретки по координатам
+	COORD cd;
+	cd.X = x;
+	cd.Y = y;
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), cd);
+}
+
+int main() {
+	setlocale(LC_ALL, "RUSSIAN");
+	time_t start_time = time(0);
+	system("color 07");
+	int c1 = 0xA, c2 = 0xE, c3 = 0xF, c4 = 0xB;
+
+	for (;;) {
+		if (time(0) >= start_time + 1) {
+			SetPos(80 / 2 - 2, 25 / 2 - 1);
+			SetColor(c1); cout << "T";
+			SetColor(c2); cout << "e";
+			SetColor(c3); cout << "x";
+			SetColor(c4); cout << "t";
+			start_time = time(0);
+			swap(c1, c2);
+			swap(c3, c2);
+			swap(c4, c3);
+		}
+	}
+	cin.get(); cin.get();
+}

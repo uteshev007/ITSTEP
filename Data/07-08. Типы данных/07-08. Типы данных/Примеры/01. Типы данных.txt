@@ -1,0 +1,43 @@
+﻿#include <iostream>
+using namespace std;
+
+int main()
+{
+	setlocale(LC_ALL, "RUSSIAN");
+
+	/* Типы данных */
+
+	cout << "Логический тип данных: \n";
+	bool bl = true;		// true/false. false=0, true=всё остальное. Размер 1 байт
+	cout << "sizeof(bool)=" << sizeof(bool) << " Б" << endl;
+
+	cout << "\nСимвольные типы данных: \n";
+	char symbol = '#';				// Один символ, записывается в одинарных кавычках. Размер 1 байт
+	char16_t symbol2 = u'\u00a9';	// Символьный тип для UTF-16. Размер 2 байта
+	char32_t symbol3 = U'🍌';		// Символьный тип для UTF-32. Размер 4 байта
+	cout << "char - " << symbol << "\nchar16_t - " << symbol2 << "\nchar32_t = " << symbol3 << endl;
+	cout << "sizeof(char)=" << sizeof(char) << " Б" << endl;
+	cout << "sizeof(symbol2)=" << sizeof(symbol2) << " Б" << endl;
+	cout << "sizeof(char32_t)=" << sizeof(char32_t) << " Б" << endl;
+
+	cout << "\nВещественные типы данных: \n";
+	//float real = 3.14;	// warning C4305: 'initializing': truncation from 'double' to 'float'
+	float real = 3.14f;		// Размер 4 байта
+	double real2 = 5.5;		// Размер 8 байт
+	cout << "sizeof(float)=" << sizeof(float) << " Б" << endl;
+	cout << "sizeof(double)=" << sizeof(double) << " Б" << endl;
+	cout << "real - " << real << "\nreal2 - " << real2 << endl;
+
+	cout << "\nЦелочисленные типы данных: \n";
+	int integer = 2;		// Размер зависит от платформы, но чаще всего 4 байта
+	long integer2 = 5;		// Размер 4 байт
+	long long integer3 = 6;	// Размер 8 байт
+
+	cout << "sizeof(int)=" << sizeof(int) << " Б" << endl;
+	cout << "sizeof(long)=" << sizeof(long) << " Б" << endl;
+	cout << "sizeof(long long)=" << sizeof(long long) << " Б" << endl;
+	cout << "integer - " << integer << "\ninteger2 - " << integer2 << "\ninteger3 - " << integer3 << endl;
+
+
+	cin.get();
+}

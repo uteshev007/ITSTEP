@@ -1,0 +1,9 @@
+#include <iostream>
+#include <Windows.h>
+using namespace std;
+int main() {
+	cout << "Text\a"; Sleep(500); cout << "\a"; Sleep(500); cout << "\a\n"; Sleep(500);
+	cout << "Text2\a"; Sleep(500); cout << "\a"; Sleep(500); cout << "\a"; Sleep(500);
+
+	cin.get();
+}

@@ -1,0 +1,102 @@
+#include <iostream>
+#include <iomanip>
+#include <time.h> // time()
+using namespace std;
+
+/*
+38. ***Создайте двухмерный массив.
+Заполните его случайными числами и покажите на экран.
+Пользователь выбирает количество сдвигов и положение
+(влево, вправо, вверх, вниз).
+Выполнить сдвиг массива и показать на экран полученный
+результат.
+Сдвиг циклический.
+Например, если мы имеем следующий массив
+  1 2 0 4 5 3
+  4 5 3 9 0 1
+и пользователь выбрал сдвиг на 2 разряда вправо, то мы получим
+  5 3 1 2 0 4
+  0 1 4 5 3 9
+*/
+#define ROW 6
+#define COL 8
+int main()
+{
+  setlocale(LC_ALL, "Rus");
+  srand(time(0));
+
+  int mas[ROW][COL];
+
+  for (int i = 0; i < ROW; i++) {
+    for (int j = 0; j < COL; j++) {
+      mas[i][j] = rand() % 20 + 1;
+      cout << setw(3) << mas[i][j] << " ";
+    }
+    cout << endl;
+  }
+  cout << endl;
+  int num, num2;
+  cout << "В какую сторону сдвиг?" << endl;
+  cout << "1-вправо. 2-влево. 3-вверх. 4-вниз." << endl;
+  cin >> num;
+  cout << "На сколько позиции сдвинуть?" << endl;
+  cin >> num2;
+
+  switch (num)
+  {
+  case 1: // сдвиг влево
+    for (int i = 0; i < num2; i++) {
+      for (int k = 0; k < ROW; k++) {
+        int temp = mas[k][COL - 1];
+        for (int j = COL - 1; j > 0; j--) {
+          mas[k][j] = mas[k][j - 1];
+        }
+        mas[k][0] = temp;
+      }
+    }
+    break;
+  case 2: // сдвиг вправо
+    for (int i = 0; i < num2; i++) {
+      for (int k = 0; k < ROW; k++) {
+        for (int j = 0; j < COL - 1; j++) {
+          swap(mas[k][j], mas[k][j + 1]);
+        }
+      }
+    }
+    break;
+  case 3: // сдвиг вверх
+    for (int i = 0; i < num2; i++) {
+      for (int k = 0; k < COL; k++) {
+        for (int j = 0; j < ROW - 1; j++) {
+          swap(mas[j][k], mas[j+1][k]);
+        }
+      }
+    }
+    break;
+  case 4: // сдвиг вниз
+    for (int i = 0; i < num2; i++) {
+      for (int k = 0; k < COL; k++) {
+        int temp = mas[ROW - 1][k];
+        for (int j = ROW - 1; j > 0; j--) {
+          mas[j][k] = mas[j-1][k];
+        }
+        mas[0][k] = temp;
+      }
+    }
+    break;
+  default:
+    cout << "Неправильное направление." << endl;
+    break;
+
+  } // switch(num)
+
+  for (int i = 0; i < ROW; i++) {
+    for (int j = 0; j < COL; j++) {
+      cout << setw(3) << mas[i][j] << " ";
+    }
+    cout << endl;
+  }
+  cout << endl;
+
+  cin.get(); cin.get();
+}

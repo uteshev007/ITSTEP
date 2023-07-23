@@ -1,0 +1,17 @@
+#include <iostream>
+
+using namespace std;
+
+void PrintArray(int a[], int size)
+{
+	for (int i = 0; i < size; i++)
+		cout << a[i] << " ";
+}
+
+int main()
+{
+	const int size = 5;
+	int a[size] = { 1,2,3,4,5 };
+	PrintArray(a, size);
+	cin.get();
+}

@@ -1,0 +1,92 @@
+#include <iostream>
+#include <fstream>  // File STREAM
+// ifstream, ofstream, fstream
+#include <iomanip>
+#include <string> // для работы с std::string
+#include <time.h>
+using namespace std;
+#define RND(min, max)  (rand()%((max)-(min)+1)+(min))
+
+/*
+4. В конец существующего текстового файла записать
+строку с текстом "До свиданья люди!".
+*/
+int GetFileSize(string name);
+void PrintFile(string name);
+int main()
+{
+  system("chcp 1251 > nul");
+  srand(time(0));
+  string strname;
+  cout << "Введите название файла: ";
+  getline(cin, strname);
+
+  // открытие файла для дозаписи 
+  // ios::app - append, режим дозаписи, режим журналирования
+  ofstream oFile(strname, ios::app);
+  if (oFile.is_open() == true)
+  {
+    cout << "Файл создан." << endl;
+    string str1;
+    cout << "Длина файла: " << GetFileSize(strname) 
+                            << " bytes."<<endl;
+    cout << endl;
+    cout << "Вводите строки: " << endl;
+    bool One = true;
+    if (GetFileSize(strname) != 0) { One = false;}
+
+    while (true)
+    {
+      getline(cin, str1);
+      if (str1 == "END" || str1 == "КОНЕЦ") { break; }
+      if (One != true) { oFile << endl; } // не первая строка в файл
+      else { One = false; } // файл пустой - это первая строка - endl не выводим в файл
+      // вывод строки в файл
+      oFile << str1; // cout << str1;
+    }
+    oFile.close(); // закрываем, чтобы потом распечатать файл
+  }
+  else {
+    cout << "Ошибка, файл не создан." << endl;
+  }
+  PrintFile(strname);
+
+  cin.get(); cin.get();
+} // main() - inFile.close();
+
+int GetFileSize(string name) {
+  ifstream File(name); // локальная переменная ф-ции GetFileSize()
+  if (File.is_open()) {
+    File.seekg(0, ios::end); //встать в конец файла
+    int size = File.tellg(); //спросить текущую позицию
+    //File.seekg(0, ios::beg); //встать в начало файла
+    File.close(); // закрыть файл - здесь не обязательно
+    return size;
+  }
+  else {
+    return -1;  //ошибка
+  }
+} // File - переменная уничтожается, для нее вызывается
+  //  деструктор, который закрывает файл File.close()
+
+void PrintFile(string name)
+{
+  ifstream iFile(name);
+  if (iFile.is_open() == true)
+  {
+    string str;
+    int count = 0;
+    while (!iFile.eof()) // пока файл не закончился
+    {
+      getline(iFile, str);
+      count++;
+      cout << count << ": " << str << endl;
+    }
+    iFile.clear(); // сбросить все флаги состояния файла
+    iFile.seekg(0, ios::beg); // встать на начало файла
+  }
+  else
+  {
+    cout << "Ошибка открытия файла." << endl;
+  }
+}

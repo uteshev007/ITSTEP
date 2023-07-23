@@ -1,0 +1,26 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+struct Student {
+	int age;
+	char name[20];
+};
+
+int main() {
+	setlocale(LC_ALL, "RUSSIAN");
+	system("chcp 1251");
+	system("cls");
+	Student Ivan;// {15, "Иван"};
+
+	/*ofstream file("1.txt", ios::binary);
+	file.write((char*)&Ivan, sizeof(Ivan));
+	file.close();*/
+
+	ifstream file("1.txt", ios::binary);
+	file.read((char*)&Ivan, sizeof(Ivan));
+	file.close();
+	cout << "Имя: " << Ivan.name << endl;
+	cout << "Возраст: " << Ivan.age << endl;
+	cin.get(); cin.get();
+}

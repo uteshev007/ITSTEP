@@ -1,0 +1,21 @@
+#include <iostream>
+#include <iomanip>
+#include <time.h>
+using namespace std;
+
+#define SIZE 10
+
+// указатели
+int main()
+{
+  system("chcp 1251 > nul");
+  srand(time(0));
+
+  cout << "Адрес ф-ции main  : " << main  << endl;
+  cout << "Адрес ф-ции system: " << system << endl;
+  cout << "Адрес ф-ции time  : " << time  << endl;
+  cout << "Адрес объекта cout: " << &cout << endl;
+  cout << "Адрес объекта cin : " << &cin  << endl;
+
+  cin.get(); cin.get();
+}

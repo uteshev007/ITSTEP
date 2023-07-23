@@ -1,0 +1,139 @@
+#include <iostream>
+#include <iomanip>
+#include <string> // для работы с std::string
+#include <time.h>
+using namespace std;
+#define RND(min, max)  (rand()%((max)-(min)+1)+(min))
+//#define RND1_20  RND(1,20)
+/*
+29.*Реализовать структуру "Книга" (название, автор,
+издательство, жанр, количество страниц, тираж, цена).
+Создайте экземпляр структуры и проиллюстрируйте работу
+с ним.
+*/
+
+struct Book
+{
+  string Name;
+  string Avtor;
+  string Issuer;
+  int Pag;
+  float Price;
+};
+
+string StrRND(int size)
+{
+  string str = ""; //пустая строка
+  for (int i = 0; i < size; i++) {
+    str += (char)RND('a', 'z');
+  }
+  return str;
+}
+
+// Ф-ция для ввода информации для одной книги
+void IntputB(Book& book)
+{
+  cout << "Введите имя: ";
+  getline(cin, book.Name);
+  cout << "Введите автора: ";
+  getline(cin, book.Avtor);
+  cout << "Введите издательство: ";
+  getline(cin, book.Issuer);
+  // контроль вводимых значений - ФЛК - форматно-логический контроль
+  cout << "Введите количество страниц: ";
+  do {
+    cin >> book.Pag;
+    if (book.Pag <= 0)
+    {
+      cout << "Указано неверно. Повторите ввод." << endl;
+    }
+  } while (book.Pag <= 0);
+
+  cout << "Введите цену: ";
+  do {
+    cin >> book.Price;
+    if (book.Price <= 0)
+    {
+      cout << "Указано неверно. Повторите ввод." << endl;
+    }
+  } while (book.Price <= 0);
+  cin.ignore();
+}
+
+// Ф-ция вывода ввода полей одной книги
+void PrintB(Book& book)
+{
+  cout << "Имя книги: " << book.Name << endl;
+  cout << "Автор книги: " << book.Avtor << endl;
+  cout << "Издательство: " << book.Issuer << endl;
+  cout << "Количество страниц: " << book.Pag << endl;
+  cout << "Цена книги: " << book.Price << endl;
+}
+void PrintMasBook(Book* mas, int size);
+void InitRandBook(Book& book);
+
+int main()
+{
+  system("chcp 1251 > nul");
+  srand(time(0));
+  int Size;
+  cout << "Введите количества книг: ";
+  cin >> Size;
+  cin.ignore();
+
+  Book* libr = new Book[Size]; //Book libr[Size];
+  // Иниц-ция массива книг
+  for (int i = 0; i < Size; i++)
+  {
+    // IntputB(libr[i]); // ввод с консоли
+    InitRandBook(libr[i]); // случ. значениями
+    cout << endl;
+  }
+  PrintMasBook(libr, Size);
+
+  /*Book book{ "Мертвые души","Гоголь","///",678,2900 };
+    PrintB(book);
+    cout << endl;
+    Book A;
+    IntputB(A);
+    cout << endl;
+    PrintB(A);
+    cout << endl;
+    IntputB(book);
+    cout << endl;
+    PrintB(book);*/
+  cin.get(); cin.get();
+}
+
+// Ф-ция печати массива книг
+void PrintMasBook(Book* mas, int size) {
+  for (int i = 0; i < size; i++) {
+    PrintB(mas[i]);
+    cout << endl;
+  }
+  cout << endl;
+}
+
+// статический массив возможных авторов
+//  для иниц-ции случ. авторами структуры Book
+string arrAutors[] = {
+  "Пушкин А.С.", "Гоголь Н.В.",
+  "Цветаева М.", "Абай К.",
+  "Дикенс", 
+};
+// размер массива arrAutors - кол-во авторов в статическом массиве
+int sizeAutors = sizeof(arrAutors)/sizeof(arrAutors[0]);
+
+void InitRandBook(Book& book)
+{
+  book.Name   = StrRND(RND(6, 20));
+  book.Name[0] -= 32; // перевод в верхний регистр
+  //book.Name[0] = _toupper(book.Name[0]); // перевод в верхний регистр
+
+  //book.Avtor  = StrRND(RND(5, 14));
+  book.Avtor = arrAutors[ RND(0, sizeAutors-1) ];
+
+  book.Issuer = StrRND(RND(5, 14));
+  book.Pag = RND(100, 1023);
+  book.Price = RND(1000, 5000) / 10.0;
+}

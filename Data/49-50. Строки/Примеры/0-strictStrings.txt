@@ -1,0 +1,21 @@
+//  /Zc:strictStrings- - выключить строгую проверку
+//                       типов дл€ строк, указателей типа char*
+
+#include <iostream>
+using namespace std;
+
+/*
+*/
+void main()
+{ // NULL  nullptr
+  // /Zc:strictStrings- - выключить строгую проверку
+  //          типов дл€ строк, указателей типа char*
+  system("chcp 1251 > nul");
+
+  char *str = "—трока 1";
+  cout << "str: " << str << endl;
+  str[0] = 'A'; // ќшибка времени выполнени€: str указывает на константную строку
+  cout << "str: " << str << endl;
+ 
+  cin.get(); cin.get();
+}

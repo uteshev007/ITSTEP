@@ -1,0 +1,24 @@
+#include <iostream>
+#include <time.h>
+using namespace std;
+
+/*
+	a-z	A-Z
+	_
+	0-9 (начиная со 2 символа)
+*/
+
+// ссылки добавлены в С++ (в Си ссылок нет)
+int fn(int &a, float &b) {	// передача по ссылке (ссылка на оригинальные данные)
+	a = a + 2;
+	b = b + 2;
+	return a + b;
+}
+
+int main() {
+	int a = 1;
+	float b = 2.5;
+	cout << fn(a, b) << endl;
+	cout << a << " " << b << endl;
+	cin.get();
+}

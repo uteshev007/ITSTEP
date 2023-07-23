@@ -1,0 +1,16 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	setlocale(LC_ALL, "RUSSIAN");
+	int num = 5;
+	int num2 = 10;
+
+	int *p1 = &num;
+	int *p2 = &num2;
+
+	cout << p1 << endl;
+	cout << p2 << endl;
+
+	cin.get();
+}

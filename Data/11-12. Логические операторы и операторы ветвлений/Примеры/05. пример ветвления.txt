@@ -1,0 +1,28 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	setlocale(LC_ALL, "RUSSIAN");
+	int b = 3;
+	if (b) {
+		cout << "name:\t";
+		cout << "Alex\n";
+	}//name:	Alex
+
+	if (b) //name:	Alex
+		cout << "name:\t";
+	cout << "Alex\n";
+	
+	b = 0;
+	if (b) {
+		cout << "name:\t";
+		cout << "Alex\n";
+	}
+
+	if (b)
+		cout << "name:\t";
+	cout << "Alex\n";	//Alex
+
+
+	cin.get();
+}

@@ -1,0 +1,38 @@
+#include <iostream>
+#include <time.h>
+using namespace std;
+
+void init(int *mas, int size) {
+	for (int i = 0; i<size; i++) {
+		mas[i] = rand() % 10;
+	}
+}
+
+void print(int *mas, int size) {
+	for (int i = 0; i<size; i++) {
+		cout<< mas[i] <<"\t";
+	}
+	cout << endl << endl;
+}
+
+void sort(int *mas, int size) {
+	for (int i = 0; i < size; i++) {
+		for (int j = 0; j < size-1; j++) {
+			if (mas[j] > mas[j + 1]) {
+				swap(mas[j], mas[j + 1]);
+			}
+		}
+	}
+}
+
+int main() {
+	
+	const int size = 5;
+	int mas[size];
+	init(mas, size);	// »нициализаци€ массива (заполнение числами от 0 до 9)
+	print(mas, size);
+	sort(mas, size);
+	print(mas, size);
+
+	cin.get();
+}

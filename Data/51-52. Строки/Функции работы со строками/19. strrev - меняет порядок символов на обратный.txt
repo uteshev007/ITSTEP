@@ -1,0 +1,14 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+
+void main()
+{
+	setlocale(LC_ALL, "RUSSIAN");
+	char name[100];
+	cout << "Введите строку: ";
+	cin.getline(name, 100);
+	cout << strrev(name);// Меняем порядок символов на обратный
+
+	cin.get(); cin.get();
+}

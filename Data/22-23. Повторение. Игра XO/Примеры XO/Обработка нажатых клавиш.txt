@@ -1,0 +1,25 @@
+#include <iostream>
+#include <windows.h>	//Beep, Sleep
+#include <conio.h>		//kbhit, getch
+using namespace std;
+
+enum {
+	ESC=27,
+};
+
+int main()
+{
+	int key;
+	while (1) {
+		if (kbhit()) {// Нажата клавиша?
+			key = getch();	// код группы или код клавиши
+			cout << key << " ";
+			if (key == ESC) {
+				exit(0);
+			}
+		}
+		else {
+			Sleep(1);
+		}
+	}
+}

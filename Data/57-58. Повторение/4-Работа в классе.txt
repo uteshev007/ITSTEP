@@ -1,0 +1,55 @@
+#include <iostream>
+#include <iomanip>
+#include <time.h>
+#include <string> // для работы с объектами типа string
+using namespace std;
+// макро-функция, макрос для генерации случ. чисел
+#define RND(min, max)  (rand()%((max)-(min)+1)+(min))
+
+/*
+1) Напишите программу, которая создает двухмерный массив
+и заполняет его по следующему принципу:
+пользователь вводит число (например, 3) первый элемент
+массива принимает значение этого числа,
+последующий элемент массива принимает значение этого
+числа умноженного на 2 (т.е. 6 для нашего примера),
+третий элемент массива предыдущий элемент умноженный
+на 2 (т.е. 6*2=12 для нашего примера).
+Созданный массив вывести на экран.
+*/
+void PrintMas(unsigned long long int** arr, int row, int col);
+int main()
+{
+  system("chcp 1251 > nul");
+  srand(time(0));
+
+unsigned long long  int** mas;
+  cout << "Введите кол-во строк и столбцов: ";
+  int Row, Col;
+  cin >> Row >> Col;
+
+  mas = new unsigned long long  int* [Row];
+  for (int i = 0; i < Row; i++) {
+    mas[i] = new unsigned long long int[Col];
+  }
+  cout << "Введите первое число: ";
+ unsigned long long int num;
+  cin >> num;
+  for (int i = 0; i < Row; i++) {
+    for (int j = 0; j < Col; j++) {
+      mas[i][j] = num;
+      num *= 2; // num = num * 2;
+    }
+  }
+  PrintMas(mas, Row, Col);
+  cin.get(); cin.get();
+}
+void PrintMas(unsigned long long int** arr, int row, int col) {
+  for (int i = 0; i < row; i++) {
+    for (int j = 0; j < col; j++) {
+      cout << setw(20) << arr[i][j] << " ";
+    }
+    cout << endl;
+  }
+  cout << endl;
+}

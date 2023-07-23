@@ -1,0 +1,77 @@
+#include <iostream>
+#include <time.h>  // time()
+using namespace std;
+
+/*
+ Циклы, массивы
+  Сортировка
+*/
+int main()
+{
+  setlocale(LC_ALL, "Rus");
+  srand(time(0));
+
+  int size;
+  cout << "Введите размер массива: ";
+  cin >> size;
+
+  int* mas = new int[size];
+  int min, max;
+  cout << "Введите минимальный. максимальный диапозон: ";
+  cin >> min >> max;
+  if (min>max)
+  {
+    swap(min, max);
+  }
+
+  for (int i = 0; i < size; i++)
+  {
+    mas[i] = rand() % (max - min + 1) + min;
+    cout << mas[i]<<" ";
+  }
+  cout << endl;
+
+  cout << "Сортируем в какую сторону: "<<endl;
+  cout << "Если 1-по возрастанию. 2- по убыванию."<<endl;
+  int choise;
+  cin >> choise;
+
+  switch (choise)
+  {
+  case 1:
+    for (int i = 0; i < size; i++)
+    {
+      for (int j = size - 1; j > i; j--)
+      {
+        if (mas[j - 1] > mas[j])
+        {
+          swap(mas[j], mas[j - 1]);
+        }
+      }
+    }
+    break;
+  case 2:
+    for (int i=0; i < size; i++)
+    {
+      for (int j = 0; j < size - 1; j++)
+      {
+        if (mas[j + 1] > mas[j])
+        {
+          swap(mas[j + 1], mas[j]);
+        }
+       }
+    }
+    break;
+  default:
+    cout << "Ошибка. Неверно выбран номер." << endl;
+    break;
+  }
+
+  for (int i = 0; i < size; i++)
+  {
+    cout << mas[i] << " ";
+  }
+  cout << endl;
+
+  cin.get(); cin.get();
+}

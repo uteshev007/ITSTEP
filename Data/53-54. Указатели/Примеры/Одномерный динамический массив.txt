@@ -1,0 +1,12 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	setlocale(LC_ALL, "RUSSIAN");
+	int size = 1*1024*1024/sizeof(int);
+	cin.get();
+	int *mas = new int[size];
+	cin.get();
+	delete[]mas;
+	cin.get(); cin.get();
+}

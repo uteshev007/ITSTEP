@@ -1,0 +1,15 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+
+	//условие ? истина : ложь;
+	setlocale(LC_ALL, "RUSSIAN");
+	int num, num2;
+	cout << "Введите 2 числа: ";
+	cin >> num >> num2;
+
+	cout << "Максимальное число: " << (num > num2 ? num : num2) << endl;
+
+	cin.get(); cin.get();
+}

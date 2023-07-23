@@ -1,0 +1,29 @@
+#include <iostream>  // Inptu-Output Stream
+using namespace std; // std - Standart library C++
+/*
+—оздать приложение, которое выводит на
+консоль фразу:
+"To be
+    or not
+        to be!"
+    \Shakespeare\
+*/
+int main()
+{
+  setlocale(LC_ALL, "Rus"); 
+  cout << "To be" << endl; 
+  cout << "        or not" << endl; 
+  cout << "               to be!" << endl;
+  cout << "        \\Shakespear\\" << endl;
+  //cout << "Next string"; // - вывод строки с текущей позиции курсора
+  
+  cout << endl << endl; // две пустые строки
+  
+  cout << "To be\n"; // \n - символ конца строки, перевод курсора на нову строку
+  cout << "\tor not\n"; // \t - символ табул€ции
+  cout << "\t\tto be!\n";
+  cout << "\t\\Shakespear\\\n";
+
+
+  cin.get(); cin.get();
+}

@@ -1,0 +1,66 @@
+#include <iostream>
+using namespace std;
+
+/*
+операторы сравнени€:
+ if(A == B) - A равно B
+ if(A != B) - A не равно B
+ if(A >  B) - A больше B
+ if(A >= B) - A больше или равно B; A не меньше B
+ if(A <  B) - A меньше B
+ if(A <= B) - A меньше или равно B; A не больше B
+*/
+
+/*
+«адачи урока
+"11-12. Ћогические операторы и операторы ветвлений"
+оператор switc-case
+*/
+int main()
+{
+  setlocale(LC_ALL, "Rus");
+
+  cout << "¬ведите целое число (1-4): ";
+  long choose; // переменна дл€ выбора в switch-case
+  cin >> choose; // ввод дл€ choose
+  //
+  switch (choose)
+  { // тело оператора switch-case
+    cout << "Ётот код никогда не выполнитс€!";
+  case 1: // случай, метка дл€ случа€ choose=1
+    // код дл€ случа€ 1
+    cout << "¬ыбран пункт 1" << endl;
+    break; // оператор завершени€ работы switch-case
+    cout << "choose = " << choose << endl;
+  case 2: // случай, метка дл€ случа€ choose=2
+    cout << "Ѕыл выбран пункт 2" << endl;
+    break;
+  case 4:
+    cout << "¬ыбор пункта 4" << endl;
+    break;
+  case 3:
+    cout << "¬ыбор пункта 3" << endl;
+    break;
+  default: // пункт дл€ всех остальных случаев
+           // не перечисленных в case,
+           // аналог else дл€ оператора if-else
+    cout << "Ќе верно выбран пунк дл€ switch-case\n";
+    cout << "choose = " << choose << endl;
+    break;
+  } // конец switch-case
+
+  cout << "“ут код после оператора switch-case\n";
+  cout << endl;
+
+  // пример решени€ с помощью оператора if-else-if
+  //  "лесенка" if-else-if
+  if (choose == 1)      { cout << "ѕунк 1" << endl; }
+  else if (choose == 2) { cout << "ѕунк 2" << endl; }
+  else if (choose == 3) { cout << "ѕунк 3" << endl; }
+  else if (choose == 4) { cout << "ѕунк 4" << endl; }
+  else { // default:
+    cout << "Ќе верно выбран пунк дл€ if-else-if\n";
+    cout << "choose = " << choose << endl;
+  }
+  cin.get(); cin.get();
+}

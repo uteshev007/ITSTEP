@@ -1,0 +1,93 @@
+#include <iostream>
+#include <fstream>
+#include <stdio.h>
+using namespace std;
+
+int FindInFile(char *buf, fstream& filename) {
+	filename.seekg(0);// Устанавливаем позицию в 0
+	char tmp[1000];
+	filename.read(tmp, 1000);
+	char *ptmp = strstr(tmp, buf);
+	if (ptmp) {
+		return ptmp - tmp;
+	}
+	return -1;
+}
+
+void MoveRight(int pos, int count, fstream& filename) {
+	char tmp;
+	// Узнаём размер файла
+	filename.clear();
+	filename.seekg(0, ios::end);
+	int filesize = filename.tellg();
+	//Привет, Алекс. Как дела?
+	//Привет, АлАлекс. Как дела?
+	//Привет, Альберт. Как дела?
+
+	// Дописываем count символов
+	for (int i = 0; i < count; i++) {
+		//Узнаём нужный символ
+		filename.seekp(filesize - count + i);
+		filename.read(&tmp, 1);
+		//Сохраняем в конец файла
+		filename.seekp(filesize + i);
+		filename.write(&tmp, 1);
+	}
+	// Перемещаем оставшиеся символы
+	for (int i = filesize; i > pos; i--) {
+		//Узнаём нужный символ
+		filename.seekp(i - count - 1);
+		filename.read(&tmp, 1);
+		//Сохраняем
+		filename.seekp(i - 1);
+		filename.write(&tmp, 1);
+	}
+}
+
+void MoveLeft(int pos, int count, fstream& filename) {
+	char tmp;
+	// Узнаём размер файла
+	filename.clear();
+	filename.seekg(0, ios::end);
+	int filesize = filename.tellg();
+	// Уменьшаем файл
+	for (int i = pos; i < filesize - count; i++) {
+		//Узнаём нужный символ
+		filename.seekp(count + i);
+		filename.read(&tmp, 1);
+		//Сохраняем в конец файла
+		filename.seekp(i);
+		filename.write(&tmp, 1);
+	}
+}
+
+
+void ReplaceInFile(char *buf, int pos, fstream& filename) {
+	filename.seekg(pos);// Устанавливаем позицию в 0
+	filename.write(buf, strlen(buf));
+}
+
+int FileSize(fstream& filename) {
+	// Узнаём размер файла
+	filename.clear();
+	filename.seekg(0, ios::end);
+	int filesize = filename.tellg();
+	filename.clear();
+	filename.seekg(0);
+	return filesize;
+}
+
+void CopyFile(char *NewName, fstream& oldFile, int filesize) {
+	ofstream filename;
+	filename.open(NewName, ios::binary);
+	oldFile.seekg(0);// Устанавливаем позицию в 0
+					 // Выделяем память
+	char *buf = new char[filesize];
+	// Читаем файл
+	oldFile.read(buf, filesize);
+	// Записываем файл
+	filename.write(buf, filesize);
+	// Закрываем файл
+	filename.close();
+	delete[]buf;
+}

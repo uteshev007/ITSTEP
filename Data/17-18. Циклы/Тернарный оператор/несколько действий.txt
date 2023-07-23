@@ -1,0 +1,11 @@
+#include <iostream>
+using namespace std;
+// тернарный оператор
+int main() {
+
+	setlocale(LC_ALL, "RUSSIAN");
+	
+	3 > 2 ? (cout << 1, cout << ">", cout << 2):cout << "false";
+
+	cin.get(); cin.get();
+}

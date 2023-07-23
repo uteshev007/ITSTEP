@@ -1,0 +1,46 @@
+#include <iostream>
+#include <iomanip>
+#include <time.h>
+using namespace std;
+
+#define SIZE 10
+
+// указатели
+int main()
+{
+  system("chcp 1251 > nul");
+  srand(time(0));
+  // 1 вариант с статическим массивом
+  int mas[SIZE]{ 1,2,3,4,5,6,7,8,9,10 }; // иниц-ци€ списком
+  int * pmas = mas; // pmas - укзатель
+  pmas = mas;     // в pmas адрес первого элемента массива
+  pmas = &mas[0]; // в pmas адрес первого элемента массива
+  // 1.1 работа с pmas, как с обычным массивом
+  for (int i = 0; i < SIZE; i++) {
+    cout << pmas[i] << " ";
+  }
+  cout << endl;
+  // 1.2 работа с pmas с помощью арифметикой указаталей
+  for (int i = 0; i < SIZE; i++) {
+    // (pmas+i) - адрес €чейки pmas[i]
+    // *(pmas+i) - разыменовывание адреса (pmas+i) == pmas[i]
+    //cout << *(pmas + i) << " ";
+    cout << *(mas + i) << " ";
+  }
+  cout << endl;
+  // 1.3 работа с pmas с помощью арифметикой указаталей
+  for (int i = 0; i < SIZE; i++) {
+    //cout << *pmas << " ";
+    //pmas++; // шаг вперед по адресу в pmas
+    cout << *pmas++ << " ";
+  }
+  cout << endl;
+  // 1.4 работа с pmas с помощью арифметикой указаталей
+  pmas--;
+  for (int i = 0; i < SIZE; i++) {
+    //pmas--; // шаг назад по адресу в pmas
+    cout << *pmas-- << " ";
+  }
+
+  cin.get(); cin.get();
+}

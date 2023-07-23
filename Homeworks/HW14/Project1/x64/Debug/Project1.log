@@ -1,0 +1,9 @@
+﻿kakXO.obj : error LNK2005: "void __cdecl CursorHide(int,unsigned long)" (?CursorHide@@YAXHK@Z) уже определен в Header.obj
+kakXO.obj : error LNK2005: "void __cdecl GetConsoleSize(int &,int &)" (?GetConsoleSize@@YAXAEAH0@Z) уже определен в Header.obj
+kakXO.obj : error LNK2005: "void __cdecl SetColor(unsigned short)" (?SetColor@@YAXG@Z) уже определен в Header.obj
+kakXO.obj : error LNK2005: "void __cdecl SetColor(int,int)" (?SetColor@@YAXHH@Z) уже определен в Header.obj
+kakXO.obj : error LNK2005: "void __cdecl SetConsoleMode(int,int,int)" (?SetConsoleMode@@YAXHHH@Z) уже определен в Header.obj
+kakXO.obj : error LNK2005: "void __cdecl SetConsoleSize(int,int)" (?SetConsoleSize@@YAXHH@Z) уже определен в Header.obj
+kakXO.obj : error LNK2005: "void __cdecl SetConsoleSize(struct tagSIZE)" (?SetConsoleSize@@YAXUtagSIZE@@@Z) уже определен в Header.obj
+kakXO.obj : error LNK2005: "void __cdecl SetPos(int,int)" (?SetPos@@YAXHH@Z) уже определен в Header.obj
+D:\ITSTEP\С++\HW\HW14\Project1\x64\Debug\Project1.exe : fatal error LNK1169: обнаружен многократно определенный символ - один или более

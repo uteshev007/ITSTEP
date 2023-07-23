@@ -1,0 +1,32 @@
+#include <iostream>
+#include <iomanip>
+#include <time.h>
+using namespace std;
+
+// указатели
+
+int main()
+{
+  system("chcp 1251 > nul");
+  srand(time(0));
+
+  int a = 1, b = 2;
+  swap(a, b);
+  cout << "a= " << a << endl; // 2
+  cout << "b= " << b << endl; // 1
+  // с помощью указателей
+  int* pa = &a, * pb = &b;
+  swap(*pa, *pb);
+  cout << "a= " << a << endl; // 1
+  cout << "b= " << b << endl; // 2
+  cout << "*pa= " << *pa << endl; // a => 1
+  cout << "*pb= " << *pb << endl; // b => 2
+
+  swap(pa, pb);
+  cout << "a= " << a << endl; // 1
+  cout << "b= " << b << endl; // 2
+  cout << "*pa= " << *pa << endl; // ?
+  cout << "*pb= " << *pb << endl; // ?
+
+  cin.get(); cin.get();
+}

@@ -1,0 +1,16 @@
+Сайт с интерактивным набором текста и запуска кода
+https://repl.it
+
+Олимпиадные задачи:
+http://informatics.mccme.ru
+https://acmp.ru
+
+Информация:
+https://metanit.com
+
+Курсы:
+https://stepik.org
+
+Видеокурс:
+ютуб канал Дударь C++
+

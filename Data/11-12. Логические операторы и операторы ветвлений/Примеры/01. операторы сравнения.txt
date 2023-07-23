@@ -1,0 +1,13 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	bool a;
+	a = 1 > 2;	cout << "1 > 2 = " << a << endl;
+	a = 1 < 2;	cout << "1 < 2 = " << a << endl;
+	a = 1 >= 2;	cout << "1 >= 2 = " << a << endl;
+	a = 1 <= 2;	cout << "1 <= 2 = " << a << endl;
+	a = 1 == 2;	cout << "1 == 2 = " << a << endl;
+	a = 1 != 2;	cout << "1 != 2 = " << a << endl;
+	cin.get();
+}

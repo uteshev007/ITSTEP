@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+
+/*
+операторы сравнения:
+ if(A == B) - A равно B
+ if(A != B) - A не равно B
+ if(A >  B) - A больше B
+ if(A >= B) - A больше или равно B; A не меньше B
+ if(A <  B) - A меньше B
+ if(A <= B) - A меньше или равно B; A не больше B
+*/
+
+/*
+Задачи урока
+"11-12. Логические операторы и операторы ветвлений"
+*/
+int main()
+{
+  setlocale(LC_ALL, "Rus");
+  int a, b;
+  cout << "Введите два числа\n";
+  cin >> a >> b;
+
+  // 1 алгоритм
+  cout << "Меньшее из чисел: "
+    << ((a + b) - (sqrt(pow(a - b, 2)))) / 2
+    << endl << endl;
+
+  // 2 алгоритм
+  int ab = a / b; // ==0 если a<b
+  int ba = b / a; // ==0 если b<a
+  int max = (ab * a + ba * b) / (ab + ba);
+  int min = (ab * b + ba * a) / (ab + ba);
+  cout << "Меньшее из чисел: " << min << endl
+       << "Большее из чисел: " << max << endl;
+  cin.get(); cin.get();
+}

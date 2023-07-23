@@ -1,0 +1,4 @@
+﻿  Source.cpp
+C:\Users\UteshevA\Desktop\C++\lesson 13\lesson13\lesson13\Source.cpp(388,20): warning C4390: ";": обнаружен пустой контролируемый оператор; это правильно?
+C:\Users\UteshevA\Desktop\C++\lesson 13\lesson13\lesson13\Source.cpp(390,20): warning C4390: ";": обнаружен пустой контролируемый оператор; это правильно?
+  lesson13.vcxproj -> C:\Users\UteshevA\Desktop\C++\lesson 13\lesson13\x64\Debug\lesson13.exe

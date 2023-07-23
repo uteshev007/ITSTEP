@@ -1,0 +1,317 @@
+#include <iostream>
+#include <iomanip>
+#include "Win10.h"
+using namespace std;
+
+int xoRow = 4, xoCol = 6;
+int titleRow = 2, titleCol = 6;
+int a11, a12, a13;
+int a21, a22, a23;
+int a31, a32, a33;
+//int a1, a2, a3, a4, a5, a6, a7, a8, a9;
+char cWin = ' ';
+int cntWinsX = 0, cntWinsO = 0, cntDraw = 0;
+bool isFirstX = true;
+
+void StartGame()
+{
+  setlocale(LC_ALL, "Rus");
+  system("cls");
+  SetPos(titleRow, titleCol);
+  cout << "Игра \"Крестики-Нолики\"";
+  a11 = a12 = a13 = 0;
+  a21 = a22 = a23 = 0;
+  a31 = a32 = a33 = 0;
+  {
+    //SetPos(xoRow,   xoCol); cout << "+---+---+---+";
+    //SetPos(xoRow+1, xoCol); cout << "|   |   |   |";
+    //SetPos(xoRow+2, xoCol); cout << "+---+---+---+";
+    //SetPos(xoRow+3, xoCol); cout << "|   |   |   |";
+    //SetPos(xoRow+4, xoCol); cout << "+---+---+---+";
+    //SetPos(xoRow+5, xoCol); cout << "|   |   |   |";
+    //SetPos(xoRow+6, xoCol); cout << "+---+---+---+";
+  }
+  {
+    setlocale(LC_ALL, "C");
+    SetPos(xoRow, xoCol);
+    cout
+      << char(201) << char(205) << char(205) << char(205)
+      << char(209) << char(205) << char(205) << char(205)
+      << char(209) << char(205) << char(205) << char(205) << char(187);
+    SetPos(xoRow+1, xoCol);
+    cout << char(186) << "   " << char(179) << "   " << char(179) << "   " << char(186);
+
+    SetPos(xoRow+2, xoCol);
+    cout
+      << char(199) << char(196) << char(196) << char(196)
+      << char(197) << char(196) << char(196) << char(196)
+      << char(197) << char(196) << char(196) << char(196) << char(182);
+    SetPos(xoRow+3, xoCol);
+    cout << char(186) << "   " << char(179) << "   " << char(179) << "   " << char(186);
+
+    SetPos(xoRow+4, xoCol);
+    cout
+      << char(199) << char(196) << char(196) << char(196)
+      << char(197) << char(196) << char(196) << char(196)
+      << char(197) << char(196) << char(196) << char(196) << char(182);
+    SetPos(xoRow+5, xoCol);
+    cout << char(186) << "   " << char(179) << "   " << char(179) << "   " << char(186);
+
+    SetPos(xoRow+6, xoCol);
+    cout
+      << char(200) << char(205) << char(205) << char(205)
+      << char(207) << char(205) << char(205) << char(205)
+      << char(207) << char(205) << char(205) << char(205) << char(188);
+    setlocale(LC_ALL, "Rus");
+  }
+
+  int curRow = xoRow + 1;
+  int curCol = xoCol + 2;
+  int row = 0, col = 0;
+  bool isX = isFirstX;
+
+  clock_t startTime = clock();
+  while(true)
+  {
+    SetPos(xoRow + 8, xoCol);
+    cout << "Сейчас ходят: " << (isX ? 'X' : 'O');
+
+    SetPos(curRow, curCol);
+    //if(_kbhit())
+    {
+      int key = _getch();
+      if(key == _KEY::CURSOR1 || key == _KEY::CURSOR2) { key = _getch(); }
+      while(_kbhit()) { _getch(); } // очистить клавиатурный буфер
+      //
+      switch(key) {
+        case UP:    if(row > 0) { row--; curRow -= 2; } break;
+        case DOWN:  if(row < 2) { row++; curRow += 2; } break;
+        case LEFT:  if(col > 0) { col--; curCol -= 4; } break;
+        case RIGHT: if(col < 2) { col++; curCol += 4; } break;
+        case ENTER:
+        case SPACE:
+        {
+          bool canSetXO = true;
+          int xo = isX ? 1 : 2;
+          switch(row) {
+            case 0:
+              if     (col == 0 && !a11) { a11 = xo; }
+              else if(col == 1 && !a12) { a12 = xo; }
+              else if(col == 2 && !a13) { a13 = xo; }
+              else { canSetXO = false; }
+              break;
+            case 1:
+              if     (col == 0 && !a21) { a21 = xo; }
+              else if(col == 1 && !a22) { a22 = xo; }
+              else if(col == 2 && !a23) { a23 = xo; }
+              else { canSetXO = false; }
+              break;
+            case 2:
+              if     (col == 0 && !a31) { a31 = xo; }
+              else if(col == 1 && !a32) { a32 = xo; }
+              else if(col == 2 && !a33) { a33 = xo; }
+              else { canSetXO = false; }
+              break;
+          }
+          if(!canSetXO) { break; }
+          cout << (isX ? 'X' : 'O') << '\b';
+          isX = !isX;
+          // check wins
+          int Win = 0;
+          // по горизонтали
+          if     (a11 == a12 && a11 == a13) { Win = a11; }
+          else if(a21 == a22 && a21 == a23) { Win = a21; }
+          else if(a31 == a32 && a31 == a33) { Win = a31; }
+          // по вертикали
+          else if(a11 == a21 && a11 == a31) { Win = a11; }
+          else if(a12 == a22 && a12 == a32) { Win = a12; }
+          else if(a13 == a23 && a13 == a33) { Win = a13; }
+          // по диагоналям
+          else if(a11 == a22 && a11 == a33) { Win = a11; }
+          else if(a13 == a22 && a13 == a31) { Win = a13; }
+          else if((a11 && a12 && a13) && (a21 && a22 && a23) && (a31 && a32 && a33)) { Win = 3; }
+
+          if(Win) {
+            clock_t gameTime = clock() - startTime;
+            SetPos(xoRow + 10, xoCol);
+            switch(Win) {
+              case 1:  cout << "Победили крестики! "; cntWinsX++; break;
+              case 2:  cout << "Победили нолики!   "; cntWinsO++; break;
+              case 3: cout << "Ничья!              "; cntDraw++; break;
+            }
+
+            SetPos(xoRow + 11, xoCol); cout << "Счет X - O: " << cntWinsX << " - " << cntWinsO;
+            SetPos(xoRow + 12, xoCol); cout << "Время игры: " << setfill('0')
+              << setw(2) << gameTime / 3'600'000   << ":"     // hours
+              << setw(2) << gameTime / 60'000 % 60 << ":"     // minutes
+              << setw(2) << gameTime / 1'000 % 60  << "."     // seconds
+              << setw(3) << gameTime % 1'000 << setfill(' '); // miliseconds
+
+            SetPos(xoRow + 13, xoCol); cout << "Всего сыграно игр: "
+              << cntWinsX + cntWinsO + cntDraw;
+            SetPos(xoRow + 14, xoCol); cout << "Ничьи: " << cntDraw;
+            SetPos(xoRow + 15, xoCol); cout << "Нажмите клавишу <ENTER> для выхода в главное меню";
+            while(_getch() != _KEY::ENTER); // ожидание нажатия <ENTER>
+            while(_kbhit()) { _getch(); } // очистить клавиатурный буфер
+            return; // выход из ф-ции игры в главное меню
+          }
+        }
+        break;
+        case ESC:
+        {
+          SetPos(xoRow + 10, xoCol);
+          cout << "Выйти из текущей игры в главное меню (y/n)? ";
+          char ynKey;
+          do {
+            ynKey = _getch();
+          } while(ynKey != 'y' && ynKey != 'Y' && ynKey != 'n' && ynKey != 'N' && ynKey != ESC);
+          while(_kbhit()) { _getch(); } // очистить клавиатурный буфер
+          if(ynKey == ESC) ynKey = 'N';
+          cout << ynKey;
+          Sleep(150);
+          if(ynKey == 'y' || ynKey == 'Y') { return; } /*выход из ф-ции игры в главное меню*/
+          // продолжаем игру
+          SetPos(xoRow + 10, xoCol);
+          cout << "                                                   ";
+          break;
+        } // case ESC:
+      } // switch(key)
+    } // if(_kbhit())
+  } // while(true)
+} // void StartGame()
+
+
+int main()
+{
+  setlocale(LC_ALL, "Rus");
+  system("cls"); // очистить экран консоли
+  int mRow = 4, mCol = 8;
+  int Select = 0;
+  int selColorFon = _COLOR::WHITE;
+  int selColorSym = _COLOR::BLUE;
+  int defColorFon = BLACK;//BLUE;
+  int defColorSym = LIGHT_YELLOW;
+  for(;;) {
+    int i = 0;
+
+    if(Select == i) SetColor(selColorFon, selColorSym);
+    else            SetColor(defColorFon, defColorSym);
+    SetPos(mRow + i++, mCol);
+    cout << "   Начать игру   ";
+
+    if(Select == i) SetColor(selColorFon, selColorSym);
+    else            SetColor(defColorFon, defColorSym);
+    SetPos(mRow + i++, mCol);
+    cout << " Статистика игры ";
+
+    if(Select == i) SetColor(selColorFon, selColorSym);
+    else            SetColor(defColorFon, defColorSym);
+    SetPos(mRow + i++, mCol);
+    cout << " Настройки игры  ";
+
+    if(Select == i) SetColor(selColorFon, selColorSym);
+    else            SetColor(defColorFon, defColorSym);
+    SetPos(mRow + i++, mCol);
+    cout << "     Помощь      ";
+
+    if(Select == i) SetColor(selColorFon, selColorSym);
+    else            SetColor(defColorFon, defColorSym);
+    SetPos(mRow + i++, mCol);
+    cout << "   Об авторах    ";
+
+    if(Select == i) SetColor(selColorFon, selColorSym);
+    else            SetColor(defColorFon, defColorSym);
+    SetPos(mRow + i++, mCol);
+    cout << "     Выход       ";
+
+    SetColor(BLACK, WHITE);
+
+    int MaxSelect = i - 1;
+
+    int key = _getch();
+    if(key == _KEY::CURSOR1 || key == _KEY::CURSOR2) { key = _getch(); }
+    while(_kbhit()) { _getch(); } // очистить клавиатурный буфер
+    switch(key)
+    {
+      case _KEY::UP:
+      case _KEY::LEFT:
+        if(Select > 0) Select--;
+        else Select = MaxSelect;
+        break;
+
+      case _KEY::DOWN:
+      case _KEY::RIGHT:
+        if(Select < MaxSelect) Select++;
+        else Select = 0;
+        break;
+
+      case _KEY::ENTER:
+      {
+        switch(Select)
+        {
+          case 0: // cout << "Начать игру";
+            StartGame();
+            system("cls");
+            break;
+          case 1: // cout << "Статистика игры";
+            system("cls");
+            SetPos(1, 2); cout << "Всего сыграно игр: " << cntWinsX + cntWinsO + cntDraw;
+            SetPos(2, 2); cout << "Победили X: " << cntWinsX << " раз";
+            SetPos(3, 2); cout << "Победили O: " << cntWinsO << " раз";
+            SetPos(4, 2); cout << "Сыгранно вничью: " << cntDraw << " раз";
+            SetPos(6, 2); system("pause");
+            system("cls");
+            break;
+
+          case 2: // cout << "Настройки игры";
+          {
+            system("cls");
+            SetPos(1, 2);
+            cout << "Выберите кто первый будет ходить (X или O): ";
+            int key;
+            do {
+              key = _getch();
+            } while(key != 'o' && key != 'O' && key != 'x' && key != 'X');
+            while(_kbhit()) { _getch(); } // очистить клавиатурный буфер
+            cout << (char)key;
+            isFirstX = (key == 'x' || key == 'X') ? true : false;
+            SetPos(2, 2);
+            system("pause");
+            system("cls");
+            break;
+          }
+          case 3: // cout << "Помощь";
+            system("cls");
+            SetPos(1, 2);
+            cout << "Здесь должна быть информация об игре и ее правилах";
+            SetPos(2, 2);
+            system("pause");
+            system("cls");
+            break;
+
+          case 4: // cout << "Об авторах";
+            system("cls");
+            SetPos(1, 2);
+            cout << "Здесь информация об авторах";
+            SetPos(2, 2);
+            system("pause");
+            system("cls");
+            break;
+
+          case 5: // cout << "Выход";
+            system("pause > nul");
+            return 0;
+        } // switch(Select)
+        break;
+      } // case _KEY::ENTER:
+
+      case _KEY::ESC:
+        Select = MaxSelect;
+        break;
+
+    } // switch(key)
+  } // for(;;) 
+
+  cin.get(); cin.get();
+
+} // int main()

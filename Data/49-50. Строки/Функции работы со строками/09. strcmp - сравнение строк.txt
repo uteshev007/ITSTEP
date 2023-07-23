@@ -1,0 +1,23 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+
+void main()
+{
+	setlocale(LC_ALL, "RUSSIAN");
+	char name[100];
+	cout << "Введите ваше имя: ";
+	cin.getline(name, 100);
+	// Сравнение строк. Возвращает 
+	//0 если строки равны,
+	//-1 если первая строка меньше второй
+	//1 если первая строка больше второй
+	if (!strcmp(name,"admin")) {
+		cout << "Добро пожаловать, Администратор!"; 
+	}
+	else {
+		cout << "Ошибка: неверный логин!";
+	}
+	
+	cin.get(); cin.get();
+}

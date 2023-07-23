@@ -1,0 +1,37 @@
+#include <iostream>
+#include <iomanip>
+#include <time.h>
+using namespace std;
+#define SIZE 1000
+int Countwork1(char str[]) {
+  if (str[0] == '\0') {return 0;}
+  int count = 0;
+  for (int i = 0; str[i] != '\0'; i++) {
+    if (str[i] == ' ') {
+      count++;
+    }
+  }
+  return count+1;
+}
+
+/*
+6. Подсчитать количество слов во введенном предложении.
+a) * "между словами находится только 1 пробел"
+b) **"    пробелы также могут располагаться вначале и в конце предложения       ".
+c) ***"  пробелы    могут располагаться    вначале
+и        в конце предложения     ,   
+и между словами может быть более 1 пробела      .      "
+*/
+int main()
+{
+  system("chcp 1251 > nul");
+  srand(time(0));
+  cout << "Введите предложение:";
+  char buffer[SIZE];
+  cin.getline(buffer, SIZE);
+  cout << "\'" << buffer << "\'" << endl;
+  cout << "Колличество слов:" << Countwork1(buffer) << endl;
+
+
+  cin.get(); cin.get();
+}

@@ -1,0 +1,21 @@
+Форматированный ввод/вывод в С++
+http://cppstudio.com/post/319/
+
+
+Форматирование строк и ввода-вывода (современный C++)
+https://msdn.microsoft.com/ru-ru/library/zh80x809.aspx
+https://msdn.microsoft.com/ru-ru/library/hh438469.aspx
+https://msdn.microsoft.com/en-us/library/zh80x809.aspx
+https://msdn.microsoft.com/en-us/library/hh438469.aspx
+
+
+Синтаксис описания формата: функции printf и wprintf
+printf(); sprintf();
+https://msdn.microsoft.com/ru-ru/library/wc7014hz.aspx
+https://msdn.microsoft.com/ru-ru/library/ybk95axf.aspx
+https://msdn.microsoft.com/ru-ru/library/56e442dc.aspx
+
+
+http://www.cyberforum.ru/cpp-beginners/thread50086.html
+http://www.cyberforum.ru/cpp/thread3459.html
+http://rsdn.org/forum/cpp/1038057.hot

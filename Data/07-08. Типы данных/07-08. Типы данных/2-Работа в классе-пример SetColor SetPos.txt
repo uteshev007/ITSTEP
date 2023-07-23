@@ -1,0 +1,51 @@
+#include <iostream> // cout, endl, cin
+// подключить библиотеку Windows.h для Sleep() и SetColor()
+#include <windows.h>
+using namespace std;
+
+//
+// функция для установки цвета выводимого символа:
+//  colBkgr - номер цвета фона
+//  colSym  - номер цвета символа
+// Примечание.
+//   Номера возможных цветов можно посмотреть в консольном окне с помощью
+//   команды COLOR /? или COLOR -help
+//
+void SetColor(int colBkgr, int colSym)
+{
+  int wAttributes = colBkgr * 16 + colSym;
+  HANDLE hOUTPUT = GetStdHandle(STD_OUTPUT_HANDLE);
+  SetConsoleTextAttribute(hOUTPUT, wAttributes);
+}
+
+// Функция для установки позиции курсора вывода
+//  Row - индекс строки консольного окна
+//  Col - индекс столбца консольного окна
+void SetPos(int Row, int Col)
+{
+  COORD cd;
+  cd.X = Col;
+  cd.Y = Row;
+  SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), cd);
+}
+
+
+int main()
+{
+  // цвет фона:    12 - C = Светло-красный
+  // цвет символа: 0  - 0 = Черный
+  //SetColor(12, 0);
+  SetColor(0xC, 0); // 0xC = 12
+  SetPos(4, 6); // установить курсов в 4 строку, 6 позицию консольного окна
+  cout << "Hello World!";
+
+  SetColor(1, 15); // 1 - синий фон, 15 - Ярко-белый (F)
+  SetColor(1, 0x0B); // 0x - префикс для 16-тиричного представления числа
+  SetPos(8, 1); // строка 8, столбец 1
+  cout << "Hello World!";
+
+  SetPos(1, 7);
+  SetColor(0, 7); // цвет вывода по умолчанию: черный фон-белые символы
+
+  cin.get(); // блокировка консоли
+}

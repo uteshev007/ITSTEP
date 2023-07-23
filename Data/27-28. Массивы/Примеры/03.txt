@@ -1,0 +1,16 @@
+#include <iostream>
+using namespace std;
+void main()
+{
+	const int size = 1000;
+	int mas[size];
+	int length;
+	cin >> length;
+
+	for (int i = 0; i < length; i++) {
+		mas[i] = i;
+		cout << mas[i]<< " ";
+	}
+
+	cin.get(); cin.get();
+}

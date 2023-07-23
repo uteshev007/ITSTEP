@@ -1,0 +1,22 @@
+#include <iostream>
+
+using namespace std;
+
+int max(int a, int b) {
+	cout << "Int" << endl;
+	return a > b ? a : b;
+}
+
+double max(double a, double b) {
+	cout << "Double" << endl;
+	return a > b ? a : b;
+}
+
+int main()
+{
+	int a, b;
+	cin >> a >> b;
+	int mx = max(a, b);
+	cout << mx;
+	cin.get(); cin.get();
+}

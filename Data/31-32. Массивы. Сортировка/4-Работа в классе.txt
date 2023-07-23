@@ -1,0 +1,102 @@
+#include <iostream>
+#include <algorithm> // для ф-ции std::sort()
+#include <time.h>  // time()
+using namespace std;
+
+/*
+ Циклы, массивы
+  Сортировка
+*/
+int main()
+{
+  setlocale(LC_ALL, "Rus");
+  srand(time(0));
+
+  int size;
+  cout << "Введите размер массива: ";
+  cin >> size;
+
+  int* mas = new int[size];
+  int min, max;
+  cout << "Введите минимальный. максимальный диапозон: ";
+  cin >> min >> max;
+  if (min>max)
+  {
+    swap(min, max);
+  }
+
+  for (int i = 0; i < size; i++)
+  {
+    mas[i] = rand() % (max - min + 1) + min;
+    //cout << mas[i]<<" ";
+  }
+  cout << endl;
+
+  cout << "Сортируем в какую сторону: "<<endl;
+  cout << "Если 1-по возрастанию. 2-по убыванию."<<endl;
+  cout << "3-использовать ф-цию sort() по возр." << endl;
+  cout << "4-использовать ф-цию sort() по убыванию." << endl;
+  int choise;
+  cin >> choise;
+
+  clock_t tStart = clock(); // время начала сортировки - милисекунды, CLOCKS_PER_SEC
+  
+  switch (choise)
+  {
+  case 1:
+    for (int i = 0; i < size; i++)
+    {
+      for (int j = size - 1; j > i; j--)
+      {
+        if (mas[j - 1] > mas[j])
+        {
+          swap(mas[j], mas[j - 1]);
+        }
+      }
+    }
+    break;
+  case 2:
+    for (int i=0; i < size; i++)
+    {
+      for (int j = 0; j < size - 1; j++)
+      {
+        if (mas[j + 1] > mas[j])
+        {
+          swap(mas[j + 1], mas[j]);
+        }
+       }
+    }
+    break;
+  case 3: // sort() - по возрастанию
+    sort(mas, mas + size); // sort(начало массива, конец массива)
+    break;
+  case 4: // sort() - по убывнию
+    sort(mas, mas + size,
+      [](int e1, int e2) { // безымянная лямбда функция
+        if (e1 > e2) { return true; } // для swap(e1,e2) - обмен
+        else         { return false; } // элементы массива e1,e2 - оставляем на месте, не обмениваем
+        //return e1 < e2; - то же, одной строкой
+      }
+    );
+    break;
+  default:
+    cout << "Ошибка. Неверно выбран номер." << endl;
+    break;
+  } // switch(choise)
+  clock_t tFinish = clock(); // время конца сортировки
+
+  /*for (int i = 0; i < size; i++)
+  {
+    cout << mas[i] << " ";
+  }
+  cout << endl;*/
+
+  cout << "clock start : " << tStart  << " msec" << endl;
+  cout << "clock finish: " << tFinish << " msec" << endl;
+  cout << "elapsed: " << tFinish - tStart << " msec" << endl;
+  cout << "elapsed: "
+    << (double)(tFinish - tStart) / CLOCKS_PER_SEC
+    << " sec" << endl;
+
+  cin.get(); cin.get();
+}

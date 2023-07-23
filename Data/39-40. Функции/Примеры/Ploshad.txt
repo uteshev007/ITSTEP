@@ -1,0 +1,18 @@
+#include <iostream>
+
+using namespace std;
+
+double ploshad(double storonaA, double storonaB)
+{
+	return storonaA * storonaB;
+}
+
+int main()
+{
+	double a, b, s;
+	cout << "Vvedite dliny storon" << endl;
+	cin >> a >> b;
+	s = ploshad(a,b);
+	cout << "Ploshad ravna " << s << endl;
+	cin.get(); cin.get();
+}

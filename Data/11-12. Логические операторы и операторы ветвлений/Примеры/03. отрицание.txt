@@ -1,0 +1,19 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	setlocale(LC_ALL, "RUSSIAN");
+	bool player = false;
+	cout << "Ход " << player + 1 << " игрока\tНажмите ENTER для хода"; cin.get();
+	player = !player;
+	cout << "Ход " << player + 1 << " игрока\tНажмите ENTER для хода"; cin.get();
+	player = !player;
+	cout << "Ход " << player + 1 << " игрока\tНажмите ENTER для хода"; cin.get();
+	player = !player;
+	cout << "Ход " << player + 1 << " игрока\tНажмите ENTER для хода"; cin.get();
+	player = !player;
+	cout << "Ход " << player + 1 << " игрока\tНажмите ENTER для хода"; cin.get();
+	player = !player;
+	cout << "Ход " << player + 1 << " игрока\tНажмите ENTER для хода"; cin.get();
+	cin.get();
+}

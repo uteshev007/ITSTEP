@@ -1,0 +1,43 @@
+#pragma warning(disable:4996)
+#include <iostream> // C++
+//#include <stdio.h>  // C standart input-output library
+using namespace std;
+
+
+void main()
+{
+  system("chcp 1251 > nul");
+
+  //  открыть файл
+  // FILE * fopen(char * FileName, char * Mode);
+  //  FileName  - имя файла
+  //  Mode      - режим открытия файла:
+  //        "w" - открыть файл для записи, читать нельзя
+  //                (файл перезаписывается, старая информация уничтожается)
+  //        "w+" - тоже что и "w" с воможностью чтения
+  //        "r" - открыть существующий файл для чтения,
+  //                писать нельзя
+  //        "r+" - открыть существующий файл для чтения,
+  //                с воможностью записи в файл
+  //        "a" - дозаписать в файл, читать нельзя
+  //        "a+" - режим дозаписи с воможностью чтения
+  //        "t" - работать в текстовом режиме
+  //        "b" - работать в бинарном режиме
+  //
+  //  закрыть файл
+  // void fclose(FILE * hFile);
+  //
+  //  запись строки
+  // int fputs(char * str, FILE * file);
+  //  чтение строки
+  // char * fgets(char * str, FILE * file);
+  //
+  // int fputc(char   c,   FILE * file);
+  //
+  //  запись
+  // int fwrite(void * buf, int sizeOne, int Count, FILE * hFile);
+  //  чтение
+  // int fread (void * buf, int sizeOne, int Count, FILE * hFile);
+
+  cin.get(); cin.get();
+}

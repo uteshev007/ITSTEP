@@ -1,0 +1,13 @@
+#include <iostream>
+using namespace std;
+void main()
+{
+	const int size = 10;
+	int mas[size];
+
+	mas[5] = 7;
+	mas[9] = 13;
+	mas[0] = 40;
+
+	cin.get();
+}

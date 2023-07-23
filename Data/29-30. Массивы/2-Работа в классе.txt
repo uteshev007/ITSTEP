@@ -1,0 +1,66 @@
+#include <iostream>
+#include <time.h>  // time()
+using namespace std;
+
+/*
+ Циклы, массивы
+
+17. ***Написать программу, копирующую последовательно элементы
+2-х массивов размером 5 элементов каждый в один массив размером
+10 элементов.
+*/
+
+#define SIZE1  23         // для двух маленьких массивов
+#define SIZE2  SIZE1*2   // для большого массива
+
+int main()
+{
+  setlocale(LC_ALL, "Rus");
+  srand(time(0));
+  //const int size1 = 5;        // для двух маленьких массивов
+  //const int size2 = size1*2;  // для большого массива
+  long long mas1[SIZE1], mas2[SIZE1]; // два маленьких массивов
+  long long mas3[SIZE2]; // long long mas3[SIZE1*2];
+
+  // иниц-ция
+  cout << "mas1[" << SIZE1 << "]: ";
+  for(int i = 0; i < SIZE1; i++) {
+    mas1[i] = rand() % 10 + 1; // [1;10]
+    cout << mas1[i] << " ";
+  }
+  cout << endl; // конец строки вывода массива
+
+  cout << "mas2[" << SIZE1 << "]: ";
+  for(int i = 0; i < SIZE1; i++) {
+    mas2[i] = rand() % 11 + 20; // [20;30]
+    cout << mas2[i] << " ";
+  }
+  cout << endl; // конец строки вывода массива
+
+  // копирование
+  // mas1: [0 1 2 3 4]
+  // mas2:            [0 1 2 3 4]
+  // mas3: [0 1 2 3 4  5 6 7 8 9]
+  //
+  // mas1: {  4  6  1  8  9 }
+  // mas2:                 { 22 28 27 21 23 }
+  // mas3: {  4  6  1  8  9  22 28 27 21 23 }
+  // mas3: [  0  1  2  3  4   5  6  7  8  9 ]
+
+  // 1) mas1[0..4] ==> mas3[0..4]
+  for(int i = 0; i < SIZE1; i++) {
+    mas3[i] = mas1[i]; // копирование элементов 1-го массива в 3-й
+  }
+  // 2) mas2[0..4] ==> mas3[5..9]
+  for(int i = 0; i < SIZE1; i++) {
+    mas3[SIZE1 + i] = mas2[i]; // копирование элем. 2-го массива в 3-й
+  }
+  // вывод 3-го массива
+  cout << "mas3[" << SIZE2 << "]: ";
+  for(int i = 0; i < SIZE2; i++) {
+    cout << mas3[i] << " ";
+  }
+  cout << endl;
+
+  cin.get(); cin.get();
+}

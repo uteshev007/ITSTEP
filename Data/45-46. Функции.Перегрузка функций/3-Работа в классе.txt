@@ -1,0 +1,24 @@
+#include <iostream>
+#include <iomanip>
+#include <time.h>
+#include <random>
+using namespace std;
+/*
+* Перегрузка ф-ций
+*/
+
+int main()
+{
+  setlocale(LC_ALL, "Rus");
+  //srand(time(0)); - не нужно для random_device
+  random_device Rnd; // объект для аппаратной генерации случ. чисел
+  int size = 10;
+  int* mas = new int[size]; // динамический массив размером size
+  int min = 100'000, max = 900'000;
+  for (int i = 0; i < size; i++) {
+    mas[i] = Rnd() % (max - min + 1) + min;
+    cout << mas[i] << " ";
+  }
+  cout << endl;
+  cin.get(); cin.get();
+}

@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	setlocale(LC_ALL, "RUSSIAN");
+
+	/* Модификаторы типов */
+
+	/*
+		Модификаторы signed, unsigned, long и short могут применяться к целочисленным типам.
+		К символам можно применять signed и unsigned.
+		long может применяться к типу double.
+	*/
+
+	//signed int min_int = -2147483648;
+	signed int min_sint = -2'147'483'648;
+	signed int max_sint = 2'147'483'647;
+	cout << "signed int\n";
+	cout << "min_int=" << min_sint << "\t" << "max_int=" << max_sint << endl;
+
+	unsigned int min_uint = 0;
+	unsigned int max_uint = 4'294'967'295;
+	cout << "\nunsigned int\n";
+	cout << "min_int=" << min_uint << "\t\t" << "max_int=" << max_uint << endl;
+
+	short min_shortint = -32'768;
+	short max_shortint = 32'767;
+	cout << "\nshort\n";
+	cout << "min_int=" << min_shortint << "\t\t" << "max_int=" << max_shortint << endl;
+
+	unsigned short min_ushortint = 0;
+	unsigned short max_ushortint = 65'535;
+	cout << "\nunsigned short\n";
+	cout << "min_int=" << min_ushortint << "\t\t" << "max_int=" << max_ushortint << endl;
+
+	cin.get();
+}

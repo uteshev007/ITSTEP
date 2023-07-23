@@ -1,0 +1,22 @@
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+void main() {
+	setlocale(LC_ALL, "RUSSIAN");
+	ifstream file;
+	file.open("Source.cpp");
+	if (file) {
+		char tmp[100];
+		while (!file.eof()) {
+			file.getline(tmp,100);
+			cout << tmp << endl;
+		}
+		file.close();
+	}
+	else
+		cout << "Error: file not found!\n";
+	// Сверх секретный комментарий
+	cin.get();
+}

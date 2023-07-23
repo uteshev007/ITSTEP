@@ -1,0 +1,96 @@
+#include <iostream>
+#include <iomanip>
+#include <string> // для работы с std::string
+#include <time.h>
+#include "Win10.h"
+using namespace std;
+#define RND(min, max)  (rand()%((max)-(min)+1)+(min))
+/*
+12.*Создать структуру, описывающую прямоугольник.
+Написать функции-методы для работы с этой структурой:
+-перемещение прямоугольника,
+-изменение размера прямоугольника,
+вывод прямоугольника в заданную позицию экрана.
+*/
+struct Rect
+{
+  int w, h;
+  int row, col;
+  char symbol;
+  void Draw() {
+    for (int i = 0; i < h; i++) {
+      SetPos(row + i, col);
+      for (int j = 0; j < w; j++) {
+        cout << symbol;
+      }
+      cout << endl;
+    }
+  }
+  void Input() {
+    cout << "Введите ширину, высоту: ";
+    cin >> w >> h;
+    cout << "Введите координаты(row, col): ";
+    cin >> row >> col;
+    cout << "Введите символ: ";
+    cin >> symbol;
+  }
+  void KeyHandle() {
+    system("cls");
+    Draw();
+    while (true) {
+      int key = _getch();
+      switch (key) {
+      case _KEY::RIGHT:
+        if (col < 100) {col++;}
+        break;
+      case _KEY::LEFT:
+        if (col > 0) { col--; }
+        break;
+      case _KEY::UP:
+        if (row > 0) { row--; }
+        break;
+      case _KEY::DOWN:
+        if (row < 100) { row++; }
+        break;
+      case '+':
+        w++;
+        h++;
+        break;
+      case '-':
+        if(w > 1 && h > 1){w--; h--;}
+        break;
+      case _KEY::ESC:
+        system("cls");
+        SetPos(0, 0);
+        cout << "Good Bye";
+        return;
+      case _KEY::SPACE:
+        //SetColor(RND(0,15), RND(0, 15));
+        SetColor(COLOR::black, RND(1, 15));
+        break;
+     }
+      system("cls");
+      Draw();
+    }
+  }
+};
+void Draw(Rect& A) {
+  for (int i = 0; i < A.h; i++) {
+    SetPos(A.row + i, A.col);
+    for (int j = 0; j < A.w; j++) {
+      cout << A.symbol;
+    }
+    cout << endl;
+  }
+}
+int main()
+{
+  system("chcp 1251 > nul");
+  srand(time(0));
+  Rect A;
+  A.Input();
+  //A.Draw();
+  A.KeyHandle();
+  //Draw(A);
+  cin.get(); cin.get();
+}

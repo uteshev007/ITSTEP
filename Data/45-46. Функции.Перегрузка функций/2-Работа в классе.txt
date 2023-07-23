@@ -1,0 +1,162 @@
+#include <iostream>
+#include <iomanip>
+#include <time.h>
+using namespace std;
+/*
+16. **ƒан одномерный массив целых чисел.
+Ќапишите не рекурсивную функцию, котора€ осуществл€ет
+нахождени€ искомого значени€ с помощью бинарного поиска.
+‘ункци€ возвращает позицию вхождени€ искомого значени€.
+ѕроиллюстрируйте работу функции примером.
+*/
+#define SIZE 6
+// дл€ массивов типа int
+void InsMas(int mas[], int size, int min, int max) {
+  for (int i = 0; i < size; i++) {
+    mas[i] = rand() % (max - min + 1) + min;
+  }
+}
+
+// дл€ массивов типа float
+void InsMas(float mas[], int size, float min, float max) {
+  for (int i = 0; i < size; i++) {
+    // случ. число типа float с одним знаком после зап€той
+    mas[i] = rand() % (int)(max*10 - min*10 + 1) + min*10;
+    mas[i] /= 10;
+  }
+}
+
+// перегруженна€ ф-ци€ PrintMas() дл€ массивов типа int
+void PrintMas(int mas[], int size) {
+  for (int i = 0; i < size; i++) {
+    cout << mas[i] << " ";
+  }
+  cout << endl;
+}
+/*
+// это не перегруженный вариант, а дублирование ф-ции
+//  void PrintMas(int [], int)
+void PrintMas(int arr[], int count) {
+  for (int i = 0; i < count; i++) {
+    cout << arr[i] << " ";
+  }
+  cout << endl;
+}
+*/
+
+// перегруженна€ ф-ци€ PrintMas() дл€ массивов типа float
+void PrintMas(float mas[], int size) {
+  for (int i = 0; i < size; i++) {
+    cout << fixed << setprecision(1) << mas[i] << " ";
+  }
+  cout << endl;
+}
+
+// перегруженна€ ф-ци€ PrintMas() дл€ массивов типа char
+void PrintMas(char mas[], int size) {
+  for (int i = 0; i < size; i++) {
+    cout << mas[i] << " ";
+  }
+  cout << endl;
+}
+
+
+void SortMas(int mas[], int size) {
+  for (int i = 0; i < size; i++) {
+    for (int j = size - 1; j > 0; j--) {
+      if (mas[j] < mas[j - 1]) {
+        swap(mas[j], mas[j - 1]);
+      }
+    }
+  }
+}
+
+void SortMas(float mas[], int size) {
+  for (int i = 0; i < size; i++) {
+    for (int j = size - 1; j > 0; j--) {
+      if (mas[j] < mas[j - 1]) {
+        swap(mas[j], mas[j - 1]);
+      }
+    }
+  }
+}
+
+// перегруженна€ ф-ци€ SortMas дл€ типа char
+void SortMas(char mas[], int size) {
+  for (int i = 0; i < size; i++) {
+    for (int j = size - 1; j > 0; j--) {
+      if (mas[j] < mas[j - 1]) {
+        swap(mas[j], mas[j - 1]);
+      }
+    }
+  }
+}
+
+int Bsearch(int mas[], int size, int num)
+{
+  int mid = 0, start = 0, end = size - 1;
+  while (true)
+  {
+    //mid = (end - start) / 2 + start;
+    mid = (start + end) / 2;
+    if (mas[mid] > num) { end = mid; }
+    else  if (mas[mid] < num) { start = mid; }
+    else { return mid; }
+
+    if ((end - start) / 2 == 0) { break; }  //return -1
+  }
+  return -1;
+}
+
+// перегрузка Bsearch() дл€ типа float
+int Bsearch(float mas[], int size, float num) {
+  int mid = 0, start = 0, end = size - 1;
+  while (true)
+  {
+    mid = (start + end) / 2; //mid = (end - start) / 2 + start;
+    if (mas[mid] > num) { end = mid; }
+    else  if (mas[mid] < num) { start = mid; }
+    else { return mid; }
+    if ((end - start) / 2 == 0) { break; }  //return -1
+  }
+  return -1;
+}
+
+int main()
+{
+  setlocale(LC_ALL, "Rus");
+  srand(time(0));
+
+  int mas[SIZE];
+  //char mas[SIZE];
+  InsMas(mas, SIZE, 10, 30);
+  PrintMas(mas, SIZE);
+  SortMas(mas, SIZE);
+  PrintMas(mas, SIZE);
+  cout << endl;
+
+  int size2;
+  cout << "¬ведите размер массива: ";
+  cin >> size2;
+  //int* mas2 = new int[size2];
+  float * mas2 = new float[size2];
+  InsMas(mas2, size2, 4, 44);
+  PrintMas(mas2, size2);
+  SortMas(mas2, size2);
+  PrintMas(mas2, size2);
+
+  float num;
+  cout << "¬ведите число: ";
+  cin >> num;
+  cout << endl;
+  int rest = Bsearch(mas2, size2, num);
+  if (rest != -1)
+  {
+    cout << "„исло найдено. ¬ позиции: " << rest + 1 << endl;
+  }
+  else
+  {
+    cout << "“акого числа в массиве нет." << endl;
+  }
+  cin.get(); cin.get();
+}

@@ -1,0 +1,17 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+
+void main()
+{
+	setlocale(LC_ALL, "RUSSIAN");
+	char name[100], name2[100];
+	cout << "¬ведите строку: ";
+	cin.getline(name, 100);
+	cout << "¬ведите строку: ";
+	cin.getline(name2, 100);
+	// —читает сколько символов 2й строки встречаетс€ подр€д в первой
+	cout<< strspn(name, name2);
+
+	cin.get(); cin.get();
+}

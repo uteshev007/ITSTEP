@@ -1,0 +1,11 @@
+#include <stdio.h>
+#include <iostream>
+using namespace std;
+
+void main() {
+	char key = getchar();// Используем вместо cin>>key; для ввода одного символа
+	cout << key;
+
+	// Используем для задержки вместо cin.get();
+	getchar(); getchar();
+}

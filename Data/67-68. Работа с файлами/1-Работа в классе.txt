@@ -1,0 +1,92 @@
+#include <iostream>
+#include <fstream>  // File STREAM
+                    // ifstream, ofstream, fstream
+#include <iomanip>
+#include <string> // для работы с std::string
+#include <time.h>
+using namespace std;
+#define RND(min, max)  (rand()%((max)-(min)+1)+(min))
+
+/*
+1. Создать текстовый файл и записать в него фразу
+"Здравствуй, мир!".
+2. Создать текстовый файл и записать в него фразу
+"Здесь был, <Ваше_имя>!".
+3. Записать массив строк в файл, расположив каждый
+элемент массива на отдельной строке с сохранением порядка.
+4. В конец существующего текстового файла записать строку
+с текстом "До свиданья люди!".
+5. Дан текстовый файл. Необходимо создать новый файл, в который переписать из исходного файла все слова, состоящие не менее чем из семи букв.
+*/
+
+int main()
+{
+  system("chcp 1251 > nul");
+  srand(time(0));
+  // 1) Создать переменную для работы с файлом
+  //  в режиме записи в файл
+  ofstream oFile; // ofstream - Output File STREAM
+                  // oFile - Output File
+  // 2) Явное открытие файла по его имени
+  // "MyFirstFile.txt" - имя файла
+  //  ".txt" - указываем тип файла текстовый
+  // ".txt" - расширение файла, тип файла
+  oFile.open("MyFirstFile.txt"); // пересоздание файла, старая информация теряется, перезаписывается
+  // 3) Проверка успеха операции открытия-создания файла
+  //  для записи
+  if (oFile.is_open() == true) {
+    cout << "Файл для записи открыт успешно" << endl;
+    // 4) запись строк в файл
+    oFile << "Привет, Мир!" << endl; // в файл
+    cout  << "Привет, Мир!" << endl; // на консоль
+
+    string str = "Hello World!";
+    oFile << str << endl; // в файл
+    cout  << str << endl; // на консоль
+    // запись переменных в файл
+    int temp = 123;
+    oFile << "temp = " << temp << endl;
+    oFile << temp << endl;
+    double A = 1.2345;
+    oFile << "A = " << A << endl;
+
+    oFile.close(); // принудительное закрытие файла
+                   // здесь обязательно
+  }
+  else {
+    // сообщение об ошибке
+    cout << "Ошибка открытия файла для записи!" << endl;
+  }
+  cout << "============\n";
+  // 5) Открыть файл для чтения
+  ifstream inFile("MyFirstFile.txt");
+  if (!inFile.is_open()) // if( inFile.is_open() == false )
+  { // сообщение об ошибке
+    cout << "Ошибка открытия файла для чтения!" << endl;
+    cout << "Ошибка: файл MyFirstFile.txt не найден!" << endl;
+  }
+  else {
+    // чтение строки из файла в пременную типа string
+    string str;
+    getline(inFile, str); // getline(cin, str);
+    cout << str << endl;
+    // чтение строки из файла в символьный массив char[]
+#define SIZE 100
+    char str2[SIZE];
+    inFile.getline(str2, SIZE); // cin.getline(str2, SIZE);
+    cout << str2 << endl;
+    // чтение файла с текущей позиции до конца файла
+    // inFile.eof() - End Of File - файл закончился?
+    // дошли ли мы до конца файла
+    cout << "-------------\n";
+    while ( !inFile.eof() ) //while( inFile.eof() == false )
+    {
+      string temp; // для чтения строк из файла
+      getline(inFile, temp); // чтение следующей строки из файла
+      cout << temp << endl; // вывод прочтенной из файла строки
+    }
+    inFile.close(); // принудительное закрытие файла
+                    // здесь не обязательно
+  }
+  cin.get(); cin.get();
+} // main() - inFile.close();

@@ -1,0 +1,75 @@
+#include <iostream>
+#include <iomanip>
+#include <time.h> // time()
+using namespace std;
+
+/*
+6) *Дана вещественная матрица А(N,M).
+Составить программу нахождения:
+a) минимального элемента матрицы и определения его
+   местоположения.
+b) максимального элемента матрицы и определения его
+   местоположения.
+
+34. *Напишите программу, которая создает двухмерный массив и заполняет
+его по следующему принципу:
+пользователь вводит число (например, 3) первый элемент
+массива принимает значение этого числа, последующий элемент массива
+принимает значение этого числа, умноженного на 2 (т.е. 6 для нашего
+примера), третий элемент массива предыдущий элемент,
+умноженный на 2 (т.е. 6*2=12 для нашего примера).
+Созданный массив вывести на экран.
+
+*/
+#define MAXROW 100 
+#define MAXCOL 100
+float mas[MAXROW][MAXCOL];
+int main()
+{
+  setlocale(LC_ALL, "Rus");
+  srand(time(0));
+  int rows, cols;
+  cout << "Введите размер таблицы(не больше "
+    << MAXROW << " ):" << endl;
+  cin >> rows >> cols;
+  float min, max;
+  cout << "Введите диапазон значений: " << endl;
+  cin >> min >> max;
+  int max1 = max * 10, min1 = min * 10;
+  int width = log10(max) + 1 + 2;
+  for (int i = 0; i < rows; i++) {
+    for (int j = 0; j < cols; j++) {
+      mas[i][j] = rand() % (max1 - min1 + 1) + min1;
+      mas[i][j] /= 10;
+      cout << setw(width) << fixed << setprecision(1)
+      << mas[i][j] << " ";
+    } 
+    cout << endl;
+  }
+  int iMin, jMin;
+  int iMax, jMax;
+  float Min, Max;
+  Min = Max = mas[0][0];
+  iMin = iMax = 0;
+  jMin = jMax = 0;
+  for (int i = 0; i < rows; i++) {
+    for (int j = 0; j < cols; j++) {
+      if (mas[i][j] > Max) // Max = mas[iMax][jMax]
+      {
+        Max = mas[i][j];
+        iMax = i, jMax = j;
+      }
+      if (mas[i][j] < Min) // Min = mas[iMin][jMin]
+      {
+        Min = mas[i][j];
+        iMin = i, jMin = j; }
+      }
+    }
+  /*cout << "Минимум равен: " << Min  << endl;
+  cout << "Максимум равен: " << Max << endl; */
+  cout << endl;
+  cout << "Min: mas["<< iMin+1 <<"]["<< jMin+1 <<"]=" << mas[iMin][jMin] << endl;
+  cout << "Max: mas["<< iMax+1 <<"]["<< jMax+1 << "]=" << mas[iMax][jMax] << endl;
+
+  cin.get(); cin.get();
+}

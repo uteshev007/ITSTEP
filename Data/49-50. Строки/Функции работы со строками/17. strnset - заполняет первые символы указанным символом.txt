@@ -1,0 +1,14 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+
+void main()
+{
+	setlocale(LC_ALL, "RUSSIAN");
+	char name[100];
+	//Заполняет первые 5 символов символом # (НЕ ДОБАВЛЯЕТ СИМВОЛ КОНЦА СТРОКИ)
+	name[5] = 0;
+	cout << "Добро пожаловать, " << strnset(name, '#', 5);
+
+	cin.get(); cin.get();
+}

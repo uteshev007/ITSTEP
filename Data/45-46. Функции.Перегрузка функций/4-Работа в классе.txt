@@ -1,0 +1,51 @@
+#include <iostream>
+#include <iomanip>
+#include <time.h>
+#include <random>
+using namespace std;
+/*
+* Перегрузка ф-ций
+*/
+
+int Add(int v1, int v2); // прототип ф-ции Add()
+double Add(double v1, double v2);
+double Add();
+
+int main()
+{
+  setlocale(LC_ALL, "Rus");
+  srand(time(0));
+  int a = 1, b = 2;
+  int sum = Add(a, b);
+  cout << "a + b = " << sum << endl;
+
+  double d1 = 3.1415, d2 = 5.98;
+  double res2 = Add(d1, d2);
+  cout << "d1 + d2 = " << res2 << endl;
+
+  Add();
+
+  //Add(mas, size); ==> Add(int v1[], int size);
+
+  cin.get(); cin.get();
+}
+
+// Перегруженные ф-ции Add()
+// 1) ф-ция для сложения двух целых чисел
+int    Add(int v1, int v2) { return v1 + v2; }
+
+// тоже перегрузка ф-ции Add
+void   Add(int v1[], int size) {/*код ф-ции*/}
+
+// 2) ф-ция для сложения двух дробных чисел
+double Add(double v1, double v2) { return v1 + v2; }
+
+// 3) ф-ция для сложения без параметров
+double Add() {
+  cout << "Enter two number: ";
+  double a, b;
+  cin >> a >> b;
+  cout << "a + b = " << a + b << endl;
+  return a + b; // т.к. double Add()
+}
+//void Add() {} // ошибка - ф-ция Add() уже есть

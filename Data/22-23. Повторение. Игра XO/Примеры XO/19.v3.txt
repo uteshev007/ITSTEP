@@ -1,0 +1,145 @@
+#include <iostream>
+#include <Windows.h>
+#include <time.h>
+#include <conio.h>
+using namespace std;
+
+void SetColor(WORD wAttributes) {// функция для смена цвета
+	HANDLE hOUTPUT = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(hOUTPUT, wAttributes);
+}
+
+// Функция для выбора позиции
+void SetPos(int x, int y) {// функция для установки позиции каретки по координатам
+	COORD cd;
+	cd.X = x;
+	cd.Y = y;
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), cd);
+}
+
+enum {
+	black, blue, green, aqua, red,
+	purple, yellow, white, gray,
+	light_blue, light_green,
+	light_aqua, light_red, light_purple,
+	light_yellow, bright_white
+};
+
+enum {
+	key_up=72,
+	key_down=80,
+	key_left=75,
+	key_right=77,
+	key_ESC=27,
+	key_ENTER=13
+};
+
+/*
+19.	Написать имитацию кассового аппарата для магазина, торгующего новогодними товарами. Кассир должен выбрать товар из списка, ввести его количество, затем выбрать след. товар. По завершению ввода вывести на экран всю сумму покупки. Предусмотреть наличие скидки. В списке товаров должно быть не меньше 4х товаров, должна отображаться их цена. Предусмотреть неправильно вводимые данные.
+19.1.	реализовать возможность обслуживания нескольких клиентов подряд
+19.2.	 хранение общей выручки магазина
+19.3.	ограничить количество товара в магазине.
+
+		Склад										
+Товар		Цена	Кол-во		Введите количество: 
+Шампанское	1000	100			Введите скидку:   %
+Мандарины	600		5000		К оплате: 0 тг.
+Соки		300		100
+Ананас		900		50
+
+Доход магазина: 0 тг.
+
+Клиент 1						Клиент 2
+Товар		Кол-во	Цена		Товар		Кол-во	Цена
+Шампанское	0		0			Шампанское	0		0
+Мандарины	0		0			Мандарины	0		0
+Соки		0		0			Соки		0		0
+Ананас		0		0			Ананас		0		0
+
+*/
+
+int main() {
+	int main_color = white;
+	int activ_color = light_green;
+	setlocale(LC_ALL, "RUSSIAN");
+	
+	size_t kolvo1=100, kolvo2=5000, kolvo3=100, kolvo4=50;
+	const size_t zena1=1000, zena2=600, zena3=300, zena4=900;
+
+	const int count_menu = 4;
+	int menu = 1;
+
+	int key;		// Код нажатой клавиши
+
+	cout << "		Склад										\n";
+	SetColor(0xE4); cout << "Товар		Цена	\tКол - во\n"; SetColor(main_color);
+	if (menu == 1)SetColor(activ_color);
+	cout << "Шампанское	" << zena1 << "	\t" << kolvo1 << "\n"; SetColor(main_color);
+	if (menu == 2)SetColor(activ_color);
+	cout << "Мандарины	" << zena2 << "		" << kolvo2 << "\n"; SetColor(main_color);
+	if (menu == 3)SetColor(activ_color);
+	cout << "Соки		" << zena3 << "		" << kolvo3 << "\n"; SetColor(main_color);
+	if (menu == 4)SetColor(activ_color);
+	cout << "Ананас		" << zena4 << "		" << kolvo4 << "\n\n"; SetColor(main_color);
+		cout << "Доход магазина : 0 тг.\n\n"
+<< "Клиент 1						Клиент 2\n"
+<< "Товар		Кол - во	Цена			Товар		Кол - во	Цена\n"
+<< "Шампанское	0		0			Шампанское	0		0\n"
+<< "Мандарины	0		0			Мандарины	0		0\n"
+<< "Соки		0		0			Соки		0		0\n"
+<< "Ананас		0		0			Ананас		0		0\n";
+
+	for (;;) {
+		if (kbhit()) {
+			key = getch();
+			//cout << key << " ";
+			if (key == key_up) {
+				if (menu > 1)
+					menu--;
+				else
+					menu = count_menu;
+			}
+			else if (key == key_down) {
+				if (menu < count_menu)
+					menu++;
+				else
+					menu = 1;
+			}
+			else if (key == key_ESC)
+				exit(0);
+			else if (key == key_ENTER) {
+				SetPos(50, 0); cout << "Введите количество: ";
+				int count;	cin >> count;
+				SetPos(50, 1); cout << "Введите скидку: ";
+				int discount;	cin >> discount;
+				if (menu == 1) {
+					int itog = count*zena1 - count*zena1*discount / 100;
+					SetPos(50, 2);cout << "К оплате: "<< itog;
+				}
+
+			}
+
+			if (key == key_up || key == key_down || key == key_ENTER) {
+				//system("cls");
+				SetPos(0, 0);
+				cout << "		Склад										\n";
+				SetColor(0xE4); cout << "Товар		Цена	\tКол - во\n"; SetColor(main_color);
+				if (menu == 1)SetColor(activ_color);
+				cout << "Шампанское	" << zena1 << "	\t" << kolvo1 << "   \n"; SetColor(main_color);
+				if (menu == 2)SetColor(activ_color);
+				cout << "Мандарины	" << zena2 << "		" << kolvo2 << "   \n"; SetColor(main_color);
+				if (menu == 3)SetColor(activ_color);
+				cout << "Соки		" << zena3 << "		" << kolvo3 << "   \n"; SetColor(main_color);
+				if (menu == 4)SetColor(activ_color);
+				cout << "Ананас		" << zena4 << "		" << kolvo4 << "   \n\n"; SetColor(main_color);
+				cout << "Доход магазина : 0 тг.\n\n"
+					<< "Клиент 1						Клиент 2\n"
+					<< "Товар		Кол - во	Цена			Товар		Кол - во	Цена\n"
+					<< "Шампанское	0		0			Шампанское	0		0\n"
+					<< "Мандарины	0		0			Мандарины	0		0\n"
+					<< "Соки		0		0			Соки		0		0\n"
+					<< "Ананас		0		0			Ананас		0		0\n";
+			}
+		}
+	}
+}

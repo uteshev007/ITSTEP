@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	setlocale(LC_ALL, "RUSSIAN");
+	system("chcp 1251");
+	system("cls");
+
+	char name[100];
+	cout << "Введите имя: ";
+	//cin >> name;
+	cin.getline(name, 100);
+	if (name[0] == 'a' && name[1] == 'd' && name[2] == 'm') {
+		cout << "Добро пожаловать, Администратор!";
+	}
+	else if(name[0] == 'а' && name[1] == 'д' && name[2] == 'м') {
+		cout << "Добро пожаловать, Администратор!";
+	}
+	else
+		cout << "Добро пожаловать, " << name;
+
+	cin.get(); cin.get();
+}

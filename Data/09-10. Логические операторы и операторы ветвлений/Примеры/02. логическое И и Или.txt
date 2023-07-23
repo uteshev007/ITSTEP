@@ -1,0 +1,18 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	bool uslovie; // true false;
+	// && ||
+	uslovie = (5 > 6) && (5 < 7);
+	cout << uslovie << "\n";
+
+	uslovie = (5 > 6) || (5 < 7);
+	cout << uslovie << "\n";
+
+	// оператор && имеет больший приоритет чем оператор ||
+	uslovie = (5 > 6) || (5 < 7) && (6 == 6) || (7 != 7);
+	cout << uslovie << "\n";
+
+	cin.get();
+}

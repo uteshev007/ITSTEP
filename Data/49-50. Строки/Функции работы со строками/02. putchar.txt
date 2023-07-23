@@ -1,0 +1,9 @@
+#include <stdio.h>
+
+void main() {
+	char key = 't';
+	putchar(key);// Используем вместо cout<<key;
+
+	// Используем для задержки вместо cin.get();
+	getchar();
+}

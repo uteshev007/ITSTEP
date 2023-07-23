@@ -1,0 +1,22 @@
+#include <iostream>  // Inptu-Output Stream
+using namespace std; // std - Standart library C++
+// Однострочный комментарий
+/* - начало многострочного комментарий
+ 
+
+конец комментария */
+
+// Главная функция программы на C++
+// F(x) = x**2
+int main()
+{
+  // setlocale() - ф-ция для локализации консоли к соовтетствующему языку
+  //setlocale(LC_ALL, "Russian");
+  setlocale(LC_ALL, "Rus"); 
+  // cout - Console OUTup
+  // endl - END Line
+  // ; - конец команды в С-подобных языках
+  cout << "Hello World!" << endl;
+  cout << "Привет, Мир!" << endl;
+  cin.get(); cin.get(); // блокировка консоли на экране
+}

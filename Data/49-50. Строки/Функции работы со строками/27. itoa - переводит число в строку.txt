@@ -1,0 +1,17 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+
+void main()
+{
+	setlocale(LC_ALL, "RUSSIAN");
+	char name[100];
+	int num, rad;
+	cout << "Введите число: ";
+	cin >> num;
+	cout << "Введите систему счисления: ";
+	cin >> rad;
+	cout<<itoa(num, name, rad);// Переводит целое число в строку
+
+	cin.get(); cin.get();
+}

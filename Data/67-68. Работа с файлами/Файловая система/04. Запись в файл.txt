@@ -1,0 +1,24 @@
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+int main() {
+	setlocale(LC_ALL, "RUSSIAN");
+
+	ofstream file;
+	file.open("1.txt", ios::binary);
+	if (file) {
+		float tmp;
+		
+		cout << "Введите вещественное число";
+		cin >> tmp;
+		file << tmp;
+
+		file.close();
+	}
+	else
+		cout << "Error: file not found!\n";
+	// Сверх секретный комментарий
+	cin.get();
+}

@@ -1,0 +1,64 @@
+#include <iostream>
+#include <iomanip>
+#include <time.h>
+#include <string> // для работы с объектами типа string
+using namespace std;
+// макро-функция, макрос для генерации случ. чисел
+#define RND(min, max)  (rand()%((max)-(min)+1)+(min))
+// RND(2+3*4, 5-8/5) * 10 ==>
+//  (rand()%((5-8/5) - (2+3*4) + 1) + (2+3*4)) * 10
+/*
+33. **Написать функцию, которая принимает указатель
+на массив и количество элементов.
+Функция сжимает массив, удаляя из него элементы равные 0.
+Возвращает указатель на новый массив, не содержащий 0.
+*/
+int * DeleteZero(int* mas, int size, int& newsize) {
+  newsize = 0;
+  for (int i = 0; i < size; i++) {
+    if (mas[i] != 0) {
+      newsize++;
+    }
+  }
+  // создание нового массива
+  int* mas2 = new int[newsize];
+  // копирование в mas2
+  int j = 0;
+  for (int i = 0; i < size; i++) {
+    if (mas[i] != 0) {
+      mas2[j] = mas[i];
+      j++;
+    }
+  }
+  // возвращаем указатель на новый массив без нулей
+  return mas2;
+}
+int main()
+{
+  system("chcp 1251 > nul");
+  srand(time(0));
+  int size;
+  cout << "Введите размер массива: ";
+  cin >> size;
+  int size2 = 0;
+  int* mas = new int[size];
+  for (int i = 0; i < size; i++) {
+    //mas[i] = rand() % 2;
+    mas[i] = RND(-5, 4);
+    //mas[i] =(rand()%((4)-(-5)+1)+(-5)) * 10;
+    // str[i] = RND('A', 'Z');
+    // для дробных типов [2.00; 5.00]
+    // mas_float[i] = RND(2*100, 5*100) / 100.0;
+    cout << mas[i] << " ";
+  }
+
+  cout << endl;
+  int * mas2 = DeleteZero(mas, size, size2);
+  for (int i = 0; i < size2; i++) {
+    cout << mas2[i] << " ";
+  }
+  cout << endl;
+  delete[] mas;
+  delete[] mas2;
+  cin.get(); cin.get();
+}

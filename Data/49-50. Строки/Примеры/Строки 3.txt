@@ -1,0 +1,26 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	setlocale(LC_ALL, "RUSSIAN");
+	system("chcp 1251");
+	system("cls");
+
+	int age;
+	char name[100];
+
+	cout << "Введите ваш возраст: ";
+	cin >> age;
+
+	cin.get();
+
+	cout << "Введите имя: ";
+	cin.getline(name, 100);
+
+
+
+	cout << "Ваш возраст " << age << " лет!\n";
+	cout << "Ваше имя " << name << "\n";
+
+	cin.get(); cin.get();
+}

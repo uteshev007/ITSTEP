@@ -1,0 +1,49 @@
+#include <iostream>
+#include <iomanip>
+#include <time.h>
+using namespace std;
+/*Написать функцию, которая возвращает истину, если переданное число простое,
+и ложь, если не простое.Простое число - это число, которое делиться ТОЛЬКО на
+1 и на себя(2, 5, 7, 11 и т.д.).*/
+
+// Ф-ция проверки числа на простоту
+bool CheckPrime(int a)
+{
+  for (int i = 2; i < a; i++) {
+    if (a % i == 0) {
+      return false;
+    }
+  }
+  return true;
+}
+
+// Ф-ция main() - главная функция программы
+int main()
+{
+  setlocale(LC_ALL, "Rus");
+  srand(time(0));
+  int c; 
+  bool ans = false;
+  cout << "Введите целое число: ";
+  cin >> c;
+  // 1 Вариант без ф-ции
+  for (int i = 2; i < c; i++) {
+    //ans = (c % i == 0);
+    //if (c % i == 0) { break; }
+    if (c % i == 0) {
+      ans = true;  //число не простое
+      break;
+    }
+  }
+  if (ans == true) {
+    cout << "Число не простое " << endl;
+  }
+  else {
+    cout << "Число является простым" << endl;
+  }
+  // 2 Вариант с использованием ф-ции CheckPrime()
+  cout << CheckPrime(c) << endl;
+  cout << boolalpha << CheckPrime(c) << endl;
+
+  cin.get(); cin.get();
+}

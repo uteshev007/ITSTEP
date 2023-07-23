@@ -1,0 +1,50 @@
+#include <iostream>
+#include <iomanip>  // библиотека манипуляторов для cout
+using namespace std;
+
+/*
+Пример использования манипуляторов
+*/
+int main()
+{
+  setlocale(LC_ALL, "RUS");
+  double a = 4.0;
+  double b = 41.7501534;
+  cout << "a = " << a << endl; // 4
+  cout << "b = " << b << endl; // ~ 41.7502
+  //
+  cout << setprecision(2) << a << endl; // 4
+  // обычный вывод дробных чисел с заданной точночтью
+  cout << fixed << setprecision(2) << a << endl; // 4.00
+  cout << fixed << setprecision(9) << b << endl; // 41.750153400
+  // вывод дробного числа в научном/инженерном формате
+  cout << scientific << setprecision(2) << a << endl; // 4.00E+0
+  cout << scientific << setprecision(9) << b << endl; // 4.175015340E+01
+  cout << endl;
+  // выравния
+  // по умочанию выравние по првой границе
+  cout << setw(10) << "Hello"
+       << "!" << endl;
+  cout << left << setw(10) << "Hello"
+       << "!" << endl; // по левой границе
+  cout << setw(10) << "Hello" << "!" << endl;
+  cout << setfill('A')
+       << setw(10) << "Hello"
+       << " ! " << endl;
+  // воссановление выравния по правой границе
+  cout << right << setw(10) << "Hello" << "!" << endl;
+  cout << setfill(' ') << right;
+  cout << setw(10) << "Hello" << "!" << endl;
+  cout << endl;
+  // более удобный вариант для setfill()
+  char oldFill = cout.fill('0'); // cout << setfill('0')
+  int h = 1, m = 2, s = 3; // переменные для времени
+                           // Time = 01:02:03
+  cout << "Time = "
+       << setw(2) << h << ":"
+       << setw(2) << m << ":"
+       << setw(2) << s << endl;
+  cout.fill(oldFill); // восстановить старый символ заполнителя для setw()
+
+  cin.get(); cin.get();
+}

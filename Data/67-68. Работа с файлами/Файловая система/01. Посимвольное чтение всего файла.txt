@@ -1,0 +1,23 @@
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+int main() {
+	setlocale(LC_ALL, "RUSSIAN");
+	ifstream file;// Переменная для чтения файла
+
+	file.open("Source.cpp");// Открываем файл
+	if (file) {	// Если файл открыт успешно, то
+		char tmp;
+		while (!file.eof()) {// Пока не достигли конца файла
+			tmp = file.get();// Взять один символ из файла и сохранить в tmp
+			if (!file.eof())
+				cout << tmp;
+		}
+		file.close();// Закрываем файл
+	}
+	else// Если файл не открыт, то выдаём ошибку
+		cout << "Error: file not found!\n";
+	cin.get();
+}

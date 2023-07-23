@@ -1,0 +1,137 @@
+#include <iostream>
+#include <iomanip>
+#include <time.h>
+using namespace std;
+#define SIZE 10
+/*
+Шаблон функции
+3. Напишите функцию, которая определяет максимальный
+элемент массива и возвращает одновременно его значение и номер.
+Внутри функции запрещено использовать команды cin и cout.
+- Реализуйте перегрузку для целых и вещественных типов
+     (long long, float).
+- Реализуйте шаблон этой функции.
+Рекомендации: Воспользуйтесь передачей параметров по ссылке.
+Проиллюстрировать работу этих функций.
+*/
+
+// прототип шаблонной функции InsMas()
+template <class T>
+void InsMas(T mas[], int size, T min, T max);
+
+/*
+// для типа int
+int  MaxMas(int mas[], int size, int &imax) {
+  imax = 0;
+  int max = mas[imax];
+  for (int i = 1; i < size; i++) {
+    if (mas[i] > max) {
+      max = mas[i];
+      imax = i;
+    }
+  }
+  return max;
+ }
+ // для типа float
+float  MaxMas(float mas[], int size, int & imax) {
+  imax = 0;
+  float max = mas[imax];
+  for (int i = 1; i < size; i++) {
+    if (mas[i] > max) {
+      max = mas[i];
+      imax = i;
+    }
+  }
+  return max;
+}
+*/
+// шаблон ф-ции для поиска макс. значения и его позиции в массиве
+template <class T>
+T MaxMas(T mas[], int size, int & imax) {
+  imax = 0;
+  T max = mas[imax];
+  for (int i = 1; i < size; i++) {
+    if (mas[i] > max) {
+      max = mas[i];
+      imax = i;
+    }
+  }
+  return max;
+}
+
+/*
+// для массивов типа int
+void InsMas(int mas[], int size, int min, int max) {
+  for (int i = 0; i < size; i++) {
+    mas[i] = rand() % (max - min + 1) + min;
+  }
+}*/
+// шаблон функции InsMas()
+// typename и class - для указания типа шаблона
+template <class T>
+void InsMas(T mas[], int size, T min, T max) {
+  for (int i = 0; i < size; i++) {
+    mas[i] = rand() % (max - min + 1) + min;
+  }
+}
+
+// для массивов типа float
+//template<class T1>
+//void InsMasFloat(T1 mas[], int size, T1 min, T1 max) {
+void InsMas(float mas[], int size, float min, float max) {
+  for (int i = 0; i < size; i++) {
+    // случ. число типа float с одним знаком после запятой
+    mas[i] = rand() % (int)(max * 10 - min * 10 + 1) + min * 10;
+    mas[i] /= 10;
+  }
+}
+/*
+// перегруженная ф-ция PrintMas() для массивов типа int
+void PrintMas(int mas[], int size) {
+  for (int i = 0; i < size; i++) { cout << mas[i] << " "; }
+  cout << endl;
+}
+
+// перегруженная ф-ция PrintMas() для массивов типа float
+void PrintMas(float mas[], int size) {
+  for (int i = 0; i < size; i++) { cout << mas[i] << " "; }
+  cout << endl;
+}
+*/
+// Шаблон функции
+//  template - ключевое слово для создания шаблона
+//  typename - ключевое слово для объявления типа
+template <typename MyType>
+void PrintMas(MyType mas[], int size) {
+  for (int i = 0; i < size; i++) { cout << mas[i] << " "; }
+  cout << endl;
+}
+
+int main()
+{
+  setlocale(LC_ALL, "Rus");
+  srand(time(0));
+  int min = 1, max = 100;
+  int mas1[SIZE];
+  float mas2[SIZE];
+  char mas3[SIZE];
+
+  InsMas(mas1, SIZE, min, max);  // InsMas(int mas[],
+  InsMas(mas2, SIZE, 3.5, 15.7); // InsMas(floa mas[],
+  InsMas(mas3, SIZE, 'A', 'Z');  // InsMas(char mas[],
+
+  PrintMas(mas1, SIZE); // < MyType <== int >
+  PrintMas(mas2, SIZE); // < MyType <== float >
+  PrintMas<float>(mas2, SIZE); // принудительное указание типа (float) для шаблона ф-ции
+  PrintMas(mas3, SIZE);
+
+  int index=-5;
+  cout << "Максимум равен:" << MaxMas(mas1, SIZE,index) << endl;
+  cout << "Индекс: " << index << endl;
+  cout << "Максимум равен:" << MaxMas(mas2, SIZE, index) << endl;
+  cout << "Индекс: " << index << endl;
+  cout << "Максимум равен:" << MaxMas(mas3, SIZE, index) << endl;
+  cout << "Индекс: " << index << endl;
+
+  cin.get(); cin.get();
+}

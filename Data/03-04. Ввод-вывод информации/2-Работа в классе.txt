@@ -1,0 +1,41 @@
+#include <iostream>  // Inptu-Output Stream
+using namespace std; // std - Standart library C++
+/*
+10. ***Создать приложение, которое выводит на экран следующую таблицу
+Подсказка:
+Рекомедуем выполнить следующий пример
+cout<<"\n"<<(char)201<<(char)205<<(char)205<<(char)187;
+Необходимые символы находятся в дипазоне от 179 до 218
+*/
+int main()
+{ // Ctrl+D - дублировать строку
+  // char(201) - верхний-левый угол
+  // char(205) - гориз. двойная линия
+  // char(187) - верхний-правый угол
+  // char(186) - вертикальная двойная линия
+
+  cout << char(201)
+       << char(205) << char(205) << char(205) << char(205)
+       << char(205) << char(205) << char(205) << char(205)
+       << char(205) << char(205)
+       << char(187) << endl;
+  cout << char(186) << "          " << char(186) << endl;
+  cout << char(186) << "  Hello!  " << char(186) << endl;
+
+  cout << char(186);
+  setlocale(LC_ALL, "RUS"); // ==> переключение в русскую локаль
+  cout << "  Привет! ";
+  setlocale(LC_ALL, "C"); // ==> переключение в стандартную локаль
+  cout << char(186) << endl;
+
+  cout << char(186) << "          " << char(186) << endl;
+  cout << char(200)
+       << char(205) << char(205) << char(205) << char(205)
+       << char(205) << char(205) << char(205) << char(205)
+       << char(205) << char(205)
+       << char(188) << endl;
+
+  cin.get(); cin.get();
+}
+
+

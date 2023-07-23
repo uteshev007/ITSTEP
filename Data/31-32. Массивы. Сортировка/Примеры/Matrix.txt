@@ -1,0 +1,27 @@
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+int main()
+{
+	const int size1 = 4, size2 = 4;
+	int s[size1];
+	int summa;
+	int ar[size1][size2];
+	for (int i = 0; i < size1; i++)
+	{
+		summa = 0;
+		for (int j = 0; j < size2; j++)
+		{
+			cin >> ar[i][j];
+			summa += ar[i][j];
+		}
+		s[i] = summa;
+	}
+	for (int i = 0; i < size1; i++)
+	{
+		cout << s[i] << " ";
+	}
+	cin.get(); cin.get();
+}

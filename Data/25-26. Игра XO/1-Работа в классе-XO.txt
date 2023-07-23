@@ -1,0 +1,313 @@
+//
+// Source.cpp
+//  "1-Работа в классе-XO.txt"
+//
+#include <iostream>
+#include <Windows.h> // для Sleep()
+#include <time.h>    // для time(), clock()
+#include <conio.h>   // для _kbhit(), _getch()
+
+// добавить заголовочный файл Win10.h
+#include "Win10.h"
+
+using namespace std;
+
+
+/*
+  Крестики-нолики
+  0) Главное меню игры
+  1) Игровое поле 3х3 типа char
+  6) Инициализация игрового поля
+  4) Игровой цикл
+   2) Перемещение по игровому полю
+   3) Проверка есть ли победитель или ничья
+   5) Отрисовка игрового поля
+*/
+
+// Глобальная область
+
+// Глобальные переменные для меню:
+//  Координаты вывода главного меню: строка, столбец
+int MenuRow = 4, MenuCol = 6;
+
+//  Пременная для индекса активного пункта меню
+int Select = 0;
+
+//  Пременные для цвета пунктов меню - активного, неактивных, цвет по умолчанию
+// активного
+int colSelFon = _COLOR::blue; // цвет фона
+int colSelSym = _COLOR::light_yellow; // цвет символа
+// неактивного
+int colUnSelFon = _COLOR::green; // цвет фона
+int colUnSelSym = _COLOR::black; // цвет символа
+
+// цвет по умолчанию (0,7)
+int colDefFon = _COLOR::black; // черный фон
+int colDefSym = _COLOR::white; // белые буквы
+
+// Глобальные переменные для игры:
+//  Координата верхнего-левого угла поля: строка, столбец
+int Row = 3, Col = 6;
+//  Двумерный массив 3x3 для хранения информации об ячейках игрового поля
+
+
+/*
+Игровое поле XO
+"+---+---+---+"
+"|   |   |   |"
+"+---+---+---+"
+"|   |   |   |"
+"+---+---+---+"
+"|   |   |   |"
+"+---+---+---+"
+*/
+
+// Реализация рабочих функций игры XO
+// Функция старта новой игры
+void StartGameXO() {
+  system("cls");
+
+  SetPos(Row + 0, Col); cout << "+---+---+---+";
+  SetPos(Row + 1, Col); cout << "|   |   |   |";
+  SetPos(Row + 2, Col); cout << "+---+---+---+";
+  SetPos(Row + 3, Col); cout << "|   |   |   |";
+  SetPos(Row + 4, Col); cout << "+---+---+---+";
+  SetPos(Row + 5, Col); cout << "|   |   |   |";
+  SetPos(Row + 6, Col); cout << "+---+---+---+";
+  // переменные для коорд. курсора в сетке
+  int curRow = Row + 1;
+  int curCol = Col + 2;
+  int _row = 0, _col = 0; // для строк сетки
+  // переменная для опеределения очередности хода
+  //  isStepX = true - ходят крестики
+  //  isStepX = false - ходят нолики
+  bool isStepX = true; // первыми ходят крестики
+  // двумерный массив на 3 строки по 3 чейки в строке
+  int cell[3][3] = { 0 }; // создание массива и заполнение его нулями
+  int step = 0; // для подсчета ходов игры
+  int Win = 0; // для определения победителя
+  CursorHide(TRUE, 100); // показать курсор на 100% размера
+  bool isGameOver = false; // сигнал о завершении игры
+  while (!isGameOver) // while( isGameOver == false )
+  {
+    SetPos(curRow, curCol);
+    //
+    int key = _getch();
+    switch (key) {
+      case _KEY::UP: // вверх
+      case 'w': case 'W':
+        if (_row > 0) { curRow -= 2; _row--; }
+        break;
+      case _KEY::DOWN: case 's': case 'S': // вниз
+        //if (_row < 3-1)
+        if (_row < 2) { curRow += 2; _row++; }
+        break;
+      case _KEY::LEFT: case 'a': case 'A': // влево
+        if (_col > 0) { curCol -= 4; _col--; }
+        break;
+      case _KEY::RIGHT: case 'd': case 'D': // вправо
+        if (_col < 2) { curCol += 4; _col++; }
+        break;
+      case _KEY::ENTER: case _KEY::SPACE: // сделать ход
+        if(cell[_row][_col] == 0) // проверка ячейки, что она пустая
+        {
+          step++; // подсчет кол-ва ходов
+          if (isStepX == true) {
+            cout << "X";
+            cell[_row][_col] = 1; // запомним, что тут ходили X
+            isStepX = false;
+          }
+          else {
+            cout << "O";
+            cell[_row][_col] = 2; // запомним, что тут ходили O
+            isStepX = true;
+          }
+          // по горизонтали
+          if(cell[0][0] != 0 &&
+            cell[0][0]==cell[0][1] && cell[0][0]==cell[0][2]) {
+            Win = cell[0][0]; // кто-то из cell[0][0] победил
+          }
+          if (cell[1][0] != 0 &&
+            cell[1][0]==cell[1][1] && cell[1][0]==cell[1][2]) {
+            Win = cell[1][0]; // кто-то из cell[1][0] победил
+          }
+          if(cell[2][0] != 0 &&
+            cell[2][0]==cell[2][1] && cell[2][0]==cell[2][2]) {
+            Win = cell[2][0]; // кто-то из cell[2][0] победил
+          }
+          // по вертикали
+          if(cell[0][0] != 0 &&
+            cell[0][0]==cell[1][0] && cell[0][0]==cell[2][0]) {
+            Win = cell[0][0]; // кто-то из cell[0][0] победил
+          }
+          if(cell[0][1] != 0 &&
+            cell[0][1]==cell[1][1] && cell[0][1]==cell[2][1]) {
+            Win = cell[0][1]; // кто-то из cell[0][1] победил
+          }
+          if(cell[0][2] != 0 &&
+            cell[0][2]==cell[1][2] && cell[0][2]==cell[2][2]) {
+            Win = cell[0][2]; // кто-то из cell[0][2] победил
+          }
+          // по диагонали
+          if(cell[0][0] != 0 &&
+            cell[0][0]==cell[1][1] && cell[0][0]==cell[2][2]) {
+            Win = cell[0][0]; // кто-то из cell[0][0] победил
+          }
+          if(cell[0][2] != 0 &&
+            cell[0][2]==cell[1][1] && cell[0][2]==cell[2][0]) {
+            Win = cell[0][2]; // кто-то из cell[0][0] победил
+          }
+          // анализ переменной победы - Win
+          if (Win == 1) {
+            SetPos(Row + (2 * 3 + 1) + 2, Col);
+            cout << "Победили X!";
+            system("pause > nul"); // пауза перед выходом в главное меню
+            isGameOver = true; // завершение игры
+          }
+          else if (Win == 2) {
+            SetPos(Row + (2 * 3 + 1) + 2, Col);
+            cout << "Победили O!";
+            system("pause > nul"); // пауза перед выходом в главное меню
+            isGameOver = true; // завершение игры
+          }
+          else if (step == 9) {
+            SetPos(Row + (2 * 3 + 1) + 2, Col);
+            cout << "Ничья!";
+            system("pause > nul"); // пауза перед выходом в главное меню
+            isGameOver = true; // завершение игры
+          }
+        }
+        break;
+      case _KEY::ESC: // выйти в главное меню игры, прервать текущую партию игры
+        isGameOver = true;
+        break;
+    } // switch(key)
+  } // while( !isGameOver )
+  system("pause > nul"); // временная пауза для вывода сетки игры
+  system("cls"); // cls - Clear Screen - очистить экран
+} // StartGameXO()
+
+// Функция вывода статистики на экран
+void ShowStat() {
+
+}
+// Функция для настройки игры
+void Settings() {
+
+}
+// Функция вывода информации об авторах
+void About() {
+  system("cls"); // команда очистки экрана консоли
+  SetPos(5, 8); cout << "Игра \"Крестики-Нолики\"";
+  SetPos(7, 7); cout << "Программа разработана";
+  SetPos(8, 7); cout << "  группой SDP-212.2  ";
+  // задержка экрана об авторах
+  SetPos(10, 7);
+  //system("pause"); // "Для продолжения нажмите любую клавишу..."
+  system("pause > nul"); // без вывода "Для продолжения нажмите любую клавишу..."
+  system("cls"); // очистить экран перед выходом
+}
+
+//
+int main() {
+  setlocale(LC_ALL, "Rus");
+  //system("color 7D"); // задать цвет 7D для всей консоли
+  system("color 07"); // стандартный цвет консоли
+
+  CursorHide(FALSE, 20); // скрыть, убрать курсор экрана
+
+  // Вывод приветствия - приглашение к игре (пролог)
+
+  bool isExit = false; // для завершения работы, завершения цикла менюю
+  // Бесконечный цикл для главного меню игры
+  // В цикле:
+  //while (isExit == false)
+  while ( !isExit ) // for(;;)
+  { 
+    CursorHide();//скрыть курсор
+    // 1) печать, вывод пунктов меню (Начать игру, Настройки, Об авторах, и т.д.);
+    SetPos(MenuRow + 0, MenuCol);
+    if(Select == 0){ SetColor(colSelFon, colSelSym); }
+    else           { SetColor(colUnSelFon, colUnSelSym); }
+    cout << "Начать новую игру";
+
+    SetPos(MenuRow + 1, MenuCol);
+    if(Select == 1){ SetColor(colSelFon, colSelSym); }
+    else           { SetColor(colUnSelFon, colUnSelSym); }
+    cout << "Статистика игры";
+
+    SetPos(MenuRow + 2, MenuCol);
+    if(Select == 2){ SetColor(colSelFon, colSelSym); }
+    else           { SetColor(colUnSelFon, colUnSelSym); }
+    cout << "Настройки игры";
+
+    SetPos(MenuRow + 3, MenuCol);
+    if(Select == 3){ SetColor(colSelFon, colSelSym); }
+    else           { SetColor(colUnSelFon, colUnSelSym); }
+    cout << "Об авторах";
+
+    SetPos(MenuRow + 4, MenuCol);
+    if(Select == 4){ SetColor(colSelFon, colSelSym); }
+    else           { SetColor(colUnSelFon, colUnSelSym); }
+    cout << "Выход";
+
+    // восстановление цвета вывода по умолчанию
+    SetColor(colDefFon, colDefSym);
+
+    // 2) обработка нажатия клавиш:
+    //if(_kbhit())  // if (_kbhit() != 0)
+    {
+      int key = _getch(); // _getche();
+      // если пользователь нажал на кнопку - узнать
+      // на какую кнопку нажал пользователь
+      // среагировать на нажатие кнопок ESC,
+      // ENTER, UP/DOWN/LEFT/RIGHT
+      switch (key)
+      {
+        case _KEY::UP: // вверх
+          if (Select > 0) { Select--; }
+          break;
+        case _KEY::DOWN: // вниз
+          if (Select < 4) { Select++; }
+          break;
+        case _KEY::ENTER: // выбор пункта меню
+          SetPos(MenuRow + 6, MenuCol - 2);
+          cout << "Выбран " << Select << " пункт меню";
+          // обработка пунктов меню
+          switch (Select) { // вложенный оператор switch
+            case 0: // Начать новую игру
+              StartGameXO(); // вызов функции StartGameXO() для запуска игры
+              break;
+            case 1: // Статистика игры
+              ShowStat(); // вызов функции ShowStat() - показать статистику игры
+              break;
+            case 2: // Настройки
+              Settings(); // вызов функции Settings()
+              break;
+            case 3: // Об авторах
+              About();  // вызов функции About() - вывод информации об авторах игры
+              break;
+            case 4: // Выход
+              isExit = true;
+              break;
+          }
+          break;
+        case _KEY::ESC: // нажата ESC - выход из меню
+          // return 0;
+          isExit = true; // сигнал о завершении работы программы
+          break;
+      } // switch();
+      /*if (isExit == true) {
+        break; // выход из цикла while(true) - обрыв цикла
+      }*/
+    } // if(_kbhit())
+  } // while(true)
+  // удаление старой надписи
+  SetPos(MenuRow + 6, MenuCol - 2);
+  cout << "                                ";
+  // вывод новой надписи
+  SetPos(MenuRow + 6, MenuCol - 2);
+  cout << "Goob bye...";
+
+  cin.get(); cin.get(); // блокирующие консоль ф-ции 
+} // main()

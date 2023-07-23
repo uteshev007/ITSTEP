@@ -1,0 +1,14 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+
+void main()
+{
+	setlocale(LC_ALL, "RUSSIAN");
+	char name[100];
+	// Заполняет строку указанным символом
+	name[6] = 0;
+	cout << strset(name,'#');
+
+	cin.get(); cin.get();
+}

@@ -1,0 +1,14 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+
+void main()
+{
+	setlocale(LC_ALL, "RUSSIAN");
+	char name[100];
+	cout << "Введите вещественное число: ";
+	cin.getline(name, 100);
+	double res = atof(name);// Переводит строку в вещественное число (ЗАВИСИТ ОТ ЛОКАЛИ)
+	cout << res;
+	cin.get(); cin.get();
+}

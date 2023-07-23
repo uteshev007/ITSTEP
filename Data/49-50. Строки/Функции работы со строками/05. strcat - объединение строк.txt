@@ -1,0 +1,15 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+
+void main()
+{
+	setlocale(LC_ALL, "RUSSIAN");
+	char name[100];
+	cout << "Введите ваше имя: ";
+	cin.getline(name, 100);
+	char res[100] = "Добро пожаловать, ";
+	cout<<strcat(res, name);// Объединяет первую строку и вторую. Результат заносит в первую строку
+
+	cin.get(); cin.get();
+}

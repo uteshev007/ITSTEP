@@ -1,0 +1,52 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	// —пискова€ инициализаци€ не допускает сужени€, при котором тип переменной может быть не в состо€нии представить присвоенное значение
+	/*
+		error C2397: conversion from 'double' to 'int' requires a narrowing conversion
+		warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+	*/
+	//int x={ 4.7 };	// ѕервый способ списковой инициализации
+	//int x{ 4.7 };	// ¬торой способ списковой инициализации (равно не €вл€етс€ об€зательным)
+
+	//int x = 4.7;	//warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+	//int x(4.7);	//warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+	//cout << x;
+
+	//  орректный способ создани€
+	//int x = 2;
+	//int tmp{ x };
+	//cout << x;
+
+	//  орректный способ создани€
+	//char x = 2;
+	//int tmp{ x };
+	//cout << tmp;
+
+	// error C2397: conversion from 'int' to 'char' requires a narrowing conversion
+	//int x = 2;
+	//char tmp{ x };
+	//cout << tmp;
+
+	//  орректный способ создани€
+	//const int x = 2;
+	//char tmp{ x };
+	//cout << tmp;
+
+	//int tmp{};
+	//cout << tmp;	//0
+
+	// error LNK2019: unresolved external symbol "int __cdecl tmp(void)" (?tmp@@YAHXZ) referenced in function _main
+	//int tmp();
+	//cout << tmp;
+
+
+	//int x, y, z;
+	//x = y = z = 0;
+	//cout << "x=" << x << "\ny=" << y << "\nz=" << z;
+
+
+	cin.get();
+}

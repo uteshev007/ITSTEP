@@ -1,0 +1,42 @@
+#include <iostream>
+#include <iomanip>
+#include <time.h>
+using namespace std;
+/*
+создание и работа с двумерным массивом
+*/
+//void PrintMas2D(int mas[ROW][COL], int row, int col)
+void PrintMas2D(int ** mas, int row, int col)
+{
+  for (int i = 0; i < row; i++) {
+    for (int j = 0; j < col; j++) {
+      cout << setw(4) << mas[i][j] << " ";
+    }
+    cout << endl;
+  }
+}
+
+int main()
+{
+  system("chcp 1251 > nul");
+  srand(time(0));
+  int Row, Col; // размеры массива
+  cout << "Введите кол-во строк и столбцов: ";
+  cin >> Row >> Col;
+  int ** mas2D; // указатель на указатель
+  mas2D = new int*[Row]; // массив указателей
+  // создание строк двум. динамического массива
+  for (int i = 0; i < Row; i++) {
+    mas2D[i] = new int[Col]; // создание i-той строки
+                             // двумерного массива
+  }
+  // иниц-ция массива
+  for (int i = 0; i < Row; i++) {
+    for (int j = 0; j < Col; j++) {
+      mas2D[i][j] = rand() % 20 + 1; // 1;20
+    }
+  }
+  PrintMas2D(mas2D, Row, Col);
+
+  cin.get(); cin.get();
+}

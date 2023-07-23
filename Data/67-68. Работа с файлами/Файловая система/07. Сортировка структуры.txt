@@ -1,0 +1,28 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+struct Student {
+	int age;
+	char name[20];
+};
+
+struct Group{
+	Student player[5];
+};
+
+void SortGroup(Group& gr) {
+	for (int i = 0; i < 5; i++) {
+		for (int j = 0; j < 5-1; j++) {
+			if (gr.player[j].age>gr.player[j + 1].age) {
+				swap(gr.player[j], gr.player[j + 1]);
+			}
+		}
+	}
+}
+
+int main() {
+	setlocale(LC_ALL, "RUSSIAN");
+	
+	cin.get(); cin.get();
+}

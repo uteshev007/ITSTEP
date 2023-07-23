@@ -1,0 +1,8 @@
+﻿  Source.cpp
+D:\ITSTEP\С++\HW\HW8\Source.cpp(97,6): error C2086: int a: переопределение
+D:\ITSTEP\С++\HW\HW8\Source.cpp(73,6): message : см. объявление "a"
+D:\ITSTEP\С++\HW\HW8\Source.cpp(97,9): error C2086: int b: переопределение
+D:\ITSTEP\С++\HW\HW8\Source.cpp(73,9): message : см. объявление "b"
+D:\ITSTEP\С++\HW\HW8\Source.cpp(100,7): error C2086: char sym: переопределение
+D:\ITSTEP\С++\HW\HW8\Source.cpp(76,7): message : см. объявление "sym"
+D:\ITSTEP\С++\HW\HW8\Source.cpp(111,4): error C3861: setColor: идентификатор не найден

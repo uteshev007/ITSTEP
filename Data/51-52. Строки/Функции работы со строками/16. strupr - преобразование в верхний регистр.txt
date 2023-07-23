@@ -1,0 +1,15 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+
+void main()
+{
+	setlocale(LC_ALL, "RUSSIAN");
+	char name[100];
+	cout << "Введите ваше имя: ";
+	cin.getline(name, 100);
+	//Преобразует всю строку в верхний регистр
+	cout << "Добро пожаловать, " << strupr(name);
+
+	cin.get(); cin.get();
+}

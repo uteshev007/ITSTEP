@@ -1,0 +1,66 @@
+#pragma warning(disable:4996)
+#include <iostream> // C++
+//#include <stdio.h>  // C standart input-output library
+using namespace std;
+
+
+void main()
+{
+  system("chcp 1251 > nul");
+  //  /Zc:strictStrings-
+  const char * FileName = "file.txt";
+  // открыть файл
+  // создание нового файла или пересоздание
+  //FILE * hFile = fopen(FileName, "wt");
+  // открытие файла в режиме добавления
+  FILE * hFile = fopen(FileName, "at");
+  if (hFile != nullptr) {
+    // файл создан
+    // запись первой строки с помощью
+    //  fputs() - ф-ция записи строки
+    const char * str = "Hello world";
+    fputs(str, hFile);  // 
+    fputc('\n', hFile);
+    puts(str);          // + endl;
+    // запись второй строки
+    cout << "запись второй строки" << endl;
+    char buf[100] = "запись второй строки";
+    fwrite(buf, sizeof(buf[0]),
+      //sizeof(buf) / sizeof(buf[0]),
+      strlen(buf), hFile);
+    // закрытие файла
+    cout << "закрытие файла" << endl;
+    fclose(hFile);
+  }
+  else
+  { // ошибка создания файла
+    cout << "ошибка создания файла!" << endl;
+  }
+  cout << "--------------------------------\n";
+  cout << "чтение из файла " << FileName << endl;
+  // открыть для чтения из файла
+  hFile = fopen(FileName, "rt");
+  if (hFile) {
+    // файл открыт для чтения
+    // чтение первой строки с помощью fgets()
+    const int size = 100;
+    char buf[size+1];
+    fgets(buf, size, hFile);
+    cout << buf; // <<endl;
+    // чтение из файла с помощью fread()
+    int read_count = fread(buf, sizeof(buf[0]), size, hFile);
+    cout << "fread() прочел " << read_count <<
+      " элементов" << endl;
+    // обрезка строки до истинного размера -
+    //   количество прочтенных символов
+    buf[read_count] = '\0';
+    cout << buf << endl;
+  }
+  else
+  { // ошибка открытия файла
+    cout << "ошибка открытия файла!" << endl;
+  }
+
+
+  cin.get(); cin.get();
+}

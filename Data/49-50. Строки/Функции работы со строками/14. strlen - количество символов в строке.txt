@@ -1,0 +1,15 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+
+void main()
+{
+	setlocale(LC_ALL, "RUSSIAN");
+	char name[100];
+	cout << "Введите ваше имя: ";
+	cin.getline(name, 100);
+	//Считает количество символов в строке
+	cout << "В вашем имени " << strlen(name) << " букв!";
+
+	cin.get(); cin.get();
+}

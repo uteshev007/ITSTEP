@@ -1,0 +1,40 @@
+#include <iostream>
+#include <iomanip>
+#include <time.h>
+using namespace std;
+
+// указатели
+/*
+2) ќбъ€вить две переменные и два указател€.
+  ѕрисвоить указател€м адреса переменных.
+  —равнить два указател€. ќбъ€снить результат сравнени€.
+6) —оздать 2 целые переменные и определить
+  "рассто€ние" между ними в пам€ти.
+*/
+int main()
+{
+  system("chcp 1251 > nul");
+  srand(time(0));
+
+  int a = 1;
+  int mas[10];
+  int* p1 = &mas[0]; // адрес €чейки [0] массива
+  int* p2 = &mas[1]; // адрес €чейки [1] массива
+  cout << p2 - p1 << " int" << endl;
+  cout << &mas[1] - &mas[0] << " int" << endl;
+  cout << &mas[2] - &mas[1] << " int" << endl;
+  cout << &mas[2] - &mas[0] << " int" << endl;
+
+  double * mas2[10];
+  cout << &mas2[1] - &mas2[0] << " float" << endl;
+  int b = 2;
+
+  if (&a > &b) {
+    cout << "&a - &b = " << &a - &b << endl;
+  }
+  else {
+    cout << "&b - &a = " << &b - &a << endl;
+  }
+
+  cin.get(); cin.get();
+}

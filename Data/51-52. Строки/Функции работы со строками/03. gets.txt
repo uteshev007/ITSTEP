@@ -1,0 +1,12 @@
+#include <stdio.h>
+#include <locale.h>
+// Данный пример не работает в MVS2015, но работает в более ранних версиях
+void main()
+{
+	setlocale(LC_ALL, "RUSSIAN");
+	char str[80];
+	puts("Введите ваше имя");//аналог cout<<"Введите ваше имя";
+	gets(str);//аналог cin.getline(str,80);
+
+	getchar(); getchar();//аналог cin.get();
+}

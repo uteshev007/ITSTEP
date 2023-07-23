@@ -1,0 +1,117 @@
+#include <iostream>
+using namespace std;
+
+// объявление структуры
+// КС	Имя
+struct Marker
+{
+	// тело структуры
+	string nameOfCompany;
+	int writingLength;
+	double lineWidth;
+
+	// Метод
+	void PrintInfo()
+	{
+		cout << nameOfCompany << ' ' << lineWidth << ' ' << writingLength << endl;
+	}
+
+	void Init(string nameOfCompany, int writingLength, double lineWidth)
+	{
+		// имена, которые локально создаются в функции
+		// имеют высший приоритет
+		this->nameOfCompany = nameOfCompany;
+		this->writingLength = writingLength;
+		this->lineWidth = lineWidth;
+	}
+};
+
+struct Point
+{
+	double x;
+	double y;
+
+	void PrintInfo()
+	{
+		cout << "x = " << x << ' ' << "y = " << y << endl;
+	}
+
+	void Init(double x, double y)
+	{
+		this->x = x;
+		this->y = y;
+	}
+};
+
+Point Distance(Point A, Point B)
+{
+	// У наших типов данных нет литералов
+	Point result;
+	result.x = B.x - A.x;
+	result.y = B.y - A.y;
+	return result;
+}
+
+
+// 16
+
+// функция
+//void PrintInfo(Marker &marker)
+//{
+//	cout << marker.nameOfCompany << ' ' << marker.lineWidth << ' ' << marker.writingLength << endl;
+//}
+
+void PrintAllPoints(Point* arr, int size)
+{
+	for (int i = 0; i < size; i++)
+	{
+		//с указателями работаем по стрелке
+		//arr->PrintInfo();
+		// с индексами по точке
+		arr[i].PrintInfo();
+	}
+}
+
+int main()
+{
+	//Point A;
+	Point B{3, 3};
+	Point *arr;
+
+	arr = new Point[3];
+	arr[0] = Point{ 1, 2 }; // создаем элемент прямо на месте
+	arr[1] = B; // или копируем данные другого элемента
+	arr[2] = Point{ 2, 3}; // или копируем данные другого элемента
+	
+	PrintAllPoints(arr, 3);
+
+
+	//A.Init(0, 0);
+
+	//A.PrintInfo();
+	//B.PrintInfo();
+
+	//
+	//Distance(A, B).PrintInfo(); // Каскадное использование методов
+
+
+	//Marker A; // экземпляр структуры
+	//Marker B{"Berlingo", 1200, 3}; // Конструктор
+
+	//// Cпособ обратиться к полям маркера
+	//// Их также часто называют параметрами/атрибутами
+	//A.nameOfCompany = "Berlingo"; 
+	//A.lineWidth = 2;
+	//A.writingLength = 900;
+
+	//A.PrintInfo();
+	//B.PrintInfo();
+
+	//A.Init("Berlingo", 6, 9999);
+	//A.PrintInfo();
+
+	////PrintInfo(A);
+	////PrintInfo(B);
+
+	//cout << sizeof(A.nameOfCompany);
+}

@@ -1,0 +1,16 @@
+#include <iostream>
+using namespace std;
+void main()
+{
+	const int size = 10;
+	int mas[size];
+
+	for (int i = 0; i < size; i++) {
+		mas[i] = rand();
+	}
+
+	for (int i = 0; i < size; i++) {
+		cout << mas[i] << " ";
+	}
+	cin.get();
+}

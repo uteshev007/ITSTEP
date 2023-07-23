@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	setlocale(LC_ALL, "RUSSIAN");
+	int key = 'w';
+	/*
+	if (key == 'w' || key == 'W' || key == 'ц' || key == 'Ц') {
+		cout << "Движение вперед\n";
+	}
+	else if (key == 's' || key == 'S' || key == 'ы' || key == 'Ы') {
+		cout << "Движение назад\n";
+	}
+	*/
+	switch (key) {
+	case 'w':
+	case 'W':
+	case 'ц':
+	case 'Ц':cout << "Движение вперед\n"; break;
+	case 's':
+	case 'S':
+	case 'ы':
+	case 'Ы':cout << "Движение назад\n"; break;
+	}
+
+	cin.get();
+}

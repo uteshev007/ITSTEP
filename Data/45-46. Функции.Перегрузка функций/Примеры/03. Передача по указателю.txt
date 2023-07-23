@@ -1,0 +1,28 @@
+#include <iostream>
+#include <time.h>
+using namespace std;
+
+/*
+	a-z	A-Z
+	_
+	0-9 (начиная со 2 символа)
+*/
+
+// передача по указателю (используется обычно для передачи массивов
+//							с помощью копии адреса)
+
+int fn(int *mas, int size) {	
+	int sum = 0;
+	for (int i = 0; i < size; ++i) {
+		sum += mas[i];
+	}
+	return sum;
+}
+
+int main() {
+	
+	int mas[]{ 1,2,3,4 };
+	cout << fn(mas, 4);
+
+	cin.get();
+}

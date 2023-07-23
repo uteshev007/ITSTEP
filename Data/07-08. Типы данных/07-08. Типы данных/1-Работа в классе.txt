@@ -1,0 +1,80 @@
+#include <iostream>
+#include <Windows.h> // Sleep(), SetColor(), SetPos()
+using namespace std;
+
+// Анимация вывода текста на экран
+int main()
+{
+  // Win+R; cmd <ENTER>; COLOR /?;
+  // color 1D - цвет фона: синий, цвет символов - Светло-лиловый
+  system("color 1F"); // указание цвета символов на консоли
+  //Sleep(2000); // задержка программы на 2000 мсек = 2 секунды
+
+  //cout << endl << endl << endl << endl << endl << endl;
+  cout << "\n\n\n\n\n\n";
+
+  // вывод анимированного текста
+  cout << "\r";  Sleep(200);
+  cout << "!\r";  Sleep(200);
+  cout << "d!\r";  Sleep(200);
+  cout << "ld!\r";  Sleep(200);
+  cout << "rld!\r";  Sleep(200);
+  cout << "orld!\r";  Sleep(200);
+  cout << "World!\r";  Sleep(200);
+  cout << " World!\r";  Sleep(200);
+  cout << "o World!\r";  Sleep(200);
+  cout << "lo World!\r";  Sleep(200);
+  cout << "llo World!\r";  Sleep(200);
+  cout << "ello World!\r";  Sleep(200);
+  cout << "Hello World!\r";  Sleep(200);
+  cout << " Hello World!\r";  Sleep(200);
+  cout << "  Hello World!\r";  Sleep(200);
+  cout << "   Hello World!\r";  Sleep(200);
+  cout << "    Hello World!\r";  Sleep(200);
+  cout << "     Hello World!\r";  Sleep(200);
+  cout << "      Hello World!\r";  Sleep(200);
+  cout << "       Hello World!\r";  Sleep(200);
+  cout << "        Hello World!\r";  Sleep(200);
+  cout << "         Hello World!\r";  Sleep(200);
+  cout << "          Hello World!\r";  Sleep(200);
+  cout << "           Hello World!\r";  Sleep(200);
+  cout << "            Hello World!\r";  Sleep(200);
+  cout << "             Hello World!\r";  Sleep(200);
+  cout << "              Hello World!\r";  Sleep(200);
+  cout << "               Hello World!\r";  Sleep(200);
+  cout << "                Hello World!\r";  Sleep(200);
+  cout << "                 Hello World!\r";  Sleep(200);
+  cout << "                  Hello World!\r";  Sleep(200);
+  cout << "                 Hello World! \r";  Sleep(200);
+  cout << "                Hello World! \r";  Sleep(200);
+  cout << "               Hello World! \r";  Sleep(200);
+  cout << "              Hello World! \r";  Sleep(200);
+  cout << "             Hello World! \r";  Sleep(200);
+  cout << "            Hello World! \r";  Sleep(200);
+  cout << "           Hello World! \r";  Sleep(200);
+  cout << "          Hello World! \r";  Sleep(200);
+  cout << "         Hello World! \r";  Sleep(200);
+  cout << "        Hello World! \r";  Sleep(200);
+  cout << "       Hello World! \r";  Sleep(200);
+  cout << "      Hello World! \r";  Sleep(200);
+  cout << "     Hello World! \r";  Sleep(200);
+  cout << "    Hello World! \r";  Sleep(200);
+  cout << "   Hello World! \r";  Sleep(200);
+  cout << "  Hello World! \r";  Sleep(200);
+  cout << " Hello World! \r";  Sleep(200);
+  cout << "Hello World! \r";  Sleep(200);
+  cout << "ello World! \r";  Sleep(200);
+  cout << "llo World! \r";  Sleep(200);
+  cout << "lo World! \r";  Sleep(200);
+  cout << "o World! \r";  Sleep(200);
+  cout << " World! \r";  Sleep(200);
+  cout << "World! \r";  Sleep(200);
+  cout << "orld! \r";  Sleep(200);
+  cout << "rld! \r";  Sleep(200);
+  cout << "ld! \r";  Sleep(200);
+  cout << "d! \r";  Sleep(200);
+  cout << "! \r";  Sleep(200);
+  cout << " \r";  Sleep(200);
+
+  cin.get(); cin.get(); // ожидание нажатия ВВОДА <ENTER>
+}

@@ -1,0 +1,72 @@
+#include <iostream>
+#include <iomanip>
+#include <time.h>
+using namespace std;
+#define SIZE 10
+/*
+Шаблон функции
+33. *Напишите шаблон функции, которая вычисляет
+корень линейного уравнения.
+a*x + b = 0
+x = -b / a
+
+34. **Напишите шаблон функции, которая вычисляет корень
+квадратного уравнения
+a*x^2 + b*x + c = 0
+D = b*b - 4*a*c
+x1 = ( -b + sqrt(D) ) / (2*a)
+x1 = ( -b - sqrt(D) ) / (2*a)
+
+*/
+
+/*
+a*x + b = 0
+x = -b / a
+*/
+
+template <class T>
+T Line(T a, T b)
+{
+ T x = -b / a;
+  return x;
+}
+template <class T>
+int Kvadratik(T a, T b, T c , T & X1 ,T & X2)
+{
+  T disc = b * b - 4 * a * c;
+  if (disc > 0) {
+     X1 = (-b + sqrt(disc)) / (2*a);
+     X2 = (-b - sqrt(disc)) / (2 * a);
+     return 2;
+  }
+  else if (disc == 0)
+  {
+   X1 = X2= -b / (2 * a);
+   return 1;
+  }
+  else {
+    cout << "Корней нет." << endl;
+    return 0;
+  }
+}
+int main()
+{
+  setlocale(LC_ALL, "Rus");
+  srand(time(0));
+  cout << "Введите два числа: ";
+  double a, b;
+  cin >> a >> b;
+  cout << "X = " << Line(a, b) << endl;
+  cout << endl;
+  cout << "X = " << Line<double>(a, b) << endl;
+  cout << endl;
+  double c, x1, x2;
+  cout << "Введите три числа: ";
+  cin >> a >> b >> c;
+  int cnt= Kvadratik(a, b, c, x1, x2);
+  cout << "Корней: " << cnt << " штук" << endl;
+  cout << "X1 = " << x1 << endl 
+    << "X2 = " << x2 << endl;
+
+  cin.get(); cin.get();
+}

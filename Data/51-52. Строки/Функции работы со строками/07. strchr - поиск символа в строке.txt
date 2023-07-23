@@ -1,0 +1,22 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+
+void main()
+{
+	setlocale(LC_ALL, "RUSSIAN");
+	char name[100];
+	cout << "Введите ваше имя: ";
+	cin.getline(name, 100);
+	char alp;
+	cout << "Введите одну букву из своего имени: ";
+	cin >> alp;
+	char *find = strchr(name, alp);// Ищем символ в строке и возвращает адрес найденного символа
+	if (find) {
+		cout << find; 
+	}
+	else {
+		cout << "Ошибка: такого символа нет в вашем имени!";
+	}
+	cin.get(); cin.get();
+}

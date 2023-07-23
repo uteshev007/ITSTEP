@@ -1,0 +1,43 @@
+#include <iostream>
+#include <iomanip>
+#include <time.h>
+#include <string> // для работы с объектами типа string
+using namespace std;
+// #define RAND()
+
+/*
+2. **Пользователь вводит строку, необходимо создать
+новую строку, в которую скопировать символы первой
+строки добавив символ пробела между каждым символом
+первой строки.
+Например, вводим "this", в новой строке - "t h i s".
+*/
+int main()
+{
+  system("chcp 1251 > nul");
+  srand(time(0));
+
+  string str1; // строка 1
+  cout << "Введите строку: ";
+  // getline() - функция для string для чтения с консоли
+  getline(cin, str1);
+  cout << "str1: " << str1 << endl;
+  cout << "Длина str1 = " << str1.length() << endl;
+  cout << "Длина str1 = " << str1.size() << endl;
+  // копирование строк типа string
+  string str2 = str1; // копирование
+  cout << "str2: " << str2 << endl;
+  //str2 += str1; // добавление строки st1 в конец str2
+  str2 = str2 + "---" + str1; // "this+this"
+  cout << "str2: " << str2 << endl;
+
+  // копирование с добавление пробелов
+  string str3;
+  for (int i = 0; i < str1.size(); i++) {
+    str3 += str1[i]; // добавить символ str1[i] в конец строки str3
+    str3 += ' ';  // добавить символ пробела в конец строки str3
+  }
+  cout << "str3: " << str3 << endl;
+
+  cin.get(); cin.get();
+}

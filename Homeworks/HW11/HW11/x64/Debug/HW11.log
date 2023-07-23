@@ -1,0 +1,3 @@
+﻿  Source.cpp
+D:\ITSTEP\С++\HW\HW11\HW11\Source.cpp(8,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  HW11.vcxproj -> D:\ITSTEP\С++\HW\HW11\HW11\x64\Debug\HW11.exe

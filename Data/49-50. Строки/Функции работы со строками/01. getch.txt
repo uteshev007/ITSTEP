@@ -1,0 +1,11 @@
+#include <conio.h>
+#include <iostream>
+using namespace std;
+
+void main() {
+	char key = getch();// Ждет когда пользователь нажмёт любую клавишу (не отображает нажатую клавишу на экране)
+	cout << key;// Отображаем нажатую клавишу на экране
+
+	// Используем для задержки вместо cin.get();
+	getch();
+}
